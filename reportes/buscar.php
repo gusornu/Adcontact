@@ -55,7 +55,7 @@ echo $_POST["estado"];
    // }
 
    }
-   //Modulo de 
+   //Modulo de consultas, valida todas las variables de busqueda.
 if(isset($_POST["submit"])){
 
 	// Recibimos la variable buscar del formulario de búsqueda desde el método POST
