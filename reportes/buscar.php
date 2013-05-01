@@ -55,6 +55,7 @@ echo $_POST["estado"];
    // }
 
    }
+   //Modulo de 
 if(isset($_POST["submit"])){
 
 	// Recibimos la variable buscar del formulario de búsqueda desde el método POST

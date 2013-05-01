@@ -1,4 +1,7 @@
 <?php
+/*
+*Variables de Configuracion 
+*/
 $dbhost='localhost';
 $dbusername='root';
 $dbuserpass='';
