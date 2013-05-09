@@ -1,7 +1,7 @@
-
 <?PHP 
-
-//obtener configuracion de la base de datos
+/*
+*$nivel_dir: obtener configuracion de los niveles de la base de datos
+*/
 $nivel_dir="../";
 include ($nivel_dir.'includes/config.php');
 //variables necesarias
@@ -9,8 +9,11 @@ include ($nivel_dir.'includes/existeconexion.php');
 
 if ($_POST["id_est"])
 	{
-		//UPDATE  `promocion`.`escuela` SET  `nombre` =  'primariaA', `comentario` =  'comentario12' WHERE  `escuela`.`id_escuela` =1;
-		
+/*
+*$_POST Formularios para las vriables de la URL: `promocion`.`escuela` SET  `nombre` =  'primariaA', `comentario` =  'comentario12' WHERE  `escuela`.`id_escuela` =1;
+*$query: Conecta con la base de datos
+*/
+			
 		$query = "UPDATE `promocion`.`estatus` SET `nombre`='".$_POST["nombre"]."', `abrev`='".$_POST["abrev"]."', `estatus`='".$_POST["estatus"]."' WHERE `estatus`.`id_estatus`='".$_POST["id_est"]."' ";
 		$result = mysql_query($query) or die(mysql_error());
 		$row1 = mysql_fetch_array($result);

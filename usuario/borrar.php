@@ -1,15 +1,21 @@
-
 <?PHP 
-
-//obtener configuracion de la base de datos
+/*
+*obtener configuracion de la base de datos
+*/
 $nivel_dir="../";
 include ($nivel_dir.'includes/config.php');
-//variables necesarias
-//include ($nivel_dir.'includes/existeconexion.php');
+require_once($nivel_dir.'template/pop.php');
+/*
+*variables necesarias
+*include ($nivel_dir.'includes/existeconexion.php');
+*/
 
-if ($_GET["id_esc"])
+/*
+* Se realiza la conexion a la Base de Datos para Eliminar a un Usuario de Datos en la tabla de Usuarios
+*/
+if (isset($_GET["id_usu"]))
 	{
-		$query1 = "SELECT * FROM usuario where id_usuario=".$_GET["id_esc"]."";
+		$query1 = "SELECT * FROM usuario where id_usuario=".$_GET["id_usu"]."";
 		$result1 = mysql_query($query1) or die(mysql_error());
 		$row1 = mysql_fetch_array($result1);
 		$id_esc=$row1['id_usuario'];
@@ -18,29 +24,25 @@ if ($_GET["id_esc"])
 
 ?>
 
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
 
-</head>
+<div class="form clearfix">
+    <div class="form-header">
 
-<body>
-
-<div id="inline">
-	<h2>Esta seguro de borrar el Usuario</h2>
+	<h2>Esta seguro de borrar al Usuario</h2>
 
 	<form id="form" name="form" action="inserta_usuario.php" method="post">
-		<p>
-		  <input name="del" type="hidden"  id="del"  value="<?php echo $_GET["del"]; ?>" >		  
-		  <br>
-		  
-		  <br>
-	  </p>
-<button type="submit" id="send" >Aceptar</button>
+	<input name="del" type="hidden"  id="del"  value="<?php echo $_GET["del"]; ?>" >		  
+		 <div class="button large"><input type="submit" value="Borrar"></div>
 	</form> 
 	
+    
+    
+    
+
+
+
+
+       
+    </div>
 
 </div>
-</body>
-</html>

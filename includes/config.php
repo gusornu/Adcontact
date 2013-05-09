@@ -1,10 +1,7 @@
 <?php
-/*
-*Variables de Configuracion 
-*/
 $dbhost='localhost';
 $dbusername='root';
-$dbuserpass='';
+$dbuserpass='unav21';
 $dbname = 'promocion';
 
 $con=mysql_connect($dbhost,$dbusername,$dbuserpass);

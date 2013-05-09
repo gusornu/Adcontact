@@ -14,12 +14,20 @@ mysql_select_db($dbname) or die('Cannot select database');
 
 if(isset($_GET['insert']))
    {
+
+     if(isset($_POST['contestado']))
+      {
+
+        $contestado=1;
+      }else{
+        $contestado=0;
+      }
         $ddate=$_POST["idpersona"]; 
       $fecha_seguimiento=date('Y-m-d', strtotime(str_replace('-', '/', $_POST["siguiente"]))); 
     $query = "INSERT INTO seguimiento
-      (fecha_seguimiento, observacion,prioridad,id_persona,id_usuario,id_medio,estatus)
+      (fecha_seguimiento, observacion,prioridad,id_persona,id_usuario,id_medio,contestado,estatus)
       VALUES
-      ('$fecha_seguimiento', '$_POST[observacion]','$_POST[prioridad]','$_POST[idpersona]', '$_POST[idusuario]', '$_POST[medio]', '$_POST[estatus]')";
+      ('$fecha_seguimiento', '$_POST[observacion]','$_POST[prioridad]','$_POST[idpersona]', '$_POST[idusuario]', '$_POST[medio]', $contestado, '$_POST[estatus]')";
     //echo $query; exit;
    $result = mysql_query($query) or die(mysql_error());
     if(!$result)
@@ -35,9 +43,17 @@ if(isset($_GET['insert']))
    }
    if(isset($_GET['update']))
    {
+
+     if(isset($_POST['contestado']))
+      {
+
+        $contestado=1;
+      }else{
+        $contestado=0;
+      }
       $fecha_seguimiento=date('Y-m-d', strtotime(str_replace('-', '/', $_POST["fecha_seguimiento"]))); 
     $query = "UPDATE seguimiento SET fecha='".$_POST['fecha']."', fecha_seguimiento='".$_POST['fecha_seguimiento']."', observacion='".$_POST['observacion']."',
-     prioridad='".$_POST['prioridad']."', id_persona='".$_POST['id_persona']."', id_usuario='".$_POST['id_usuario']."', id_medio='".$_POST['id_medio']."', 
+     prioridad='".$_POST['prioridad']."', id_persona='".$_POST['id_persona']."', id_usuario='".$_POST['id_usuario']."', id_medio='".$_POST['id_medio']."', contestado='".$contestado."',
      estatus='".$_POST['estatus']."' WHERE id_seguimiento = '".$_POST['id']."'";
     //echo $query; exit;
     $result = mysql_query($query) or die(mysql_error());
@@ -91,9 +107,9 @@ if(isset($_GET['insert']))
         <input type="hidden" name="idusuario"  value="1" />
         <input type="hidden" name="fecha"  value="1" />
         <div>
-            <label>Medio</label>
-            <select name="medio" class="wide">
-                <option value="0"></option>
+            <label>Medio<input type="checkbox" name="contestado" value="1"></label>
+            <select name="medio" class="wide" required>
+                <option ></option>
 <?php 
 $resulty=mysql_query("SELECT * FROM medio ;");
     
@@ -115,17 +131,17 @@ while( $rowy=mysql_fetch_array($resulty) )
         </div>
         <div>
             <label>Siguiente Seguimiento</label>
-            <input type="date" name="siguiente">
+            <input type="date" name="siguiente" required>
         </div>
 
         <div>
             <label>Observaciones</label>
-            <textarea name="observacion" class="wide"></textarea>
+            <textarea name="observacion" class="wide" required></textarea>
         </div>
 
         <div>
             <label>Prioridad</label>
-            <select name="prioridad" class="wide">
+            <select name="prioridad" class="wide" required>
                 <option value=""></option>
 
                             <option value="1">Poca</option>
@@ -139,7 +155,7 @@ while( $rowy=mysql_fetch_array($resulty) )
         
        <div>
             <label>Estatus</label>
-            <select name="estatus" class="wide">
+            <select name="estatus" class="wide" required>
                 <option value=""></option>
 
                             <option value="1">Inscrito</option>
@@ -204,8 +220,8 @@ if(isset($_GET['editar'])){
         <input type="hidden" name="fecha"  value="<?=$fecha?>" />
 
         <div>
-            <label>Medio</label>
-            <select name="id_medio" class="wide">
+            <label>Medio<input type="checkbox" name="contestado" value="1"></label>
+            <select name="id_medio" class="wide" required>
                 <option value="0"></option>
 <?php 
 $resulty=mysql_query("SELECT * FROM medio ;");
@@ -230,7 +246,7 @@ while( $rowy=mysql_fetch_array($resulty) )
         </div>
         <div>
             <label>Siguiente Seguimiento</label>
-            <input type="date" name="fecha_seguimiento" value="<?=$fecha_seguimiento?>">
+            <input type="date" name="fecha_seguimiento" value="<?=$fecha_seguimiento?>" required>
         </div>
 
         <div>
@@ -240,7 +256,7 @@ while( $rowy=mysql_fetch_array($resulty) )
 
         <div>
             <label>Prioridad</label>
-            <select name="prioridad" class="wide">
+            <select name="prioridad" class="wide" required>
                 <option value=""></option>
 
                             <option value="1">Poca</option>
@@ -254,7 +270,7 @@ while( $rowy=mysql_fetch_array($resulty) )
         
        <div>
             <label>Estatus</label>
-            <select name="estatus" class="wide">
+            <select name="estatus" class="wide" required>
                 <option value=""></option>
 
                             <option value="1">Inscrito</option>

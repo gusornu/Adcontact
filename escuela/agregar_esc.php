@@ -1,7 +1,8 @@
 
 <?PHP 
-
-//obtener configuracion de la base de datos
+/*
+*$nivel_dir: obtener configuracion de los niveles de la base de datos
+*/
 $nivel_dir="../";
 include ($nivel_dir.'includes/config.php');
 
@@ -40,17 +41,17 @@ if (isset($_GET["id_esc"]))
 		<div>
 		  <label for="Nombres">Nombre de la Escuela</label>
 		 
-		  <input type="text" id="Nombre" name="Nombre" class="txt" value="<?php echo $nombre; ?>"   >
+		  <input type="text" id="Nombre" name="Nombre" class="txt" value="<?php echo $nombre; ?>"  required="required" >
 		 </div>
          <div>
 		  <label for="Comentarios">Comentario</label>
 		 
-		  <input type="text"    id="Comentario" name="Comentario" class="txt"  value="<?php echo $comentario; ?>" >
+		  <input type="text"    id="Comentario" name="Comentario" class="txt"  value="<?php echo $comentario; ?>" required="required" >
 	  </div>
       <div>
 		  <label for="Abrev">Abreviatura</label>
 		 
-		  <input type="text"    id="Abrevia" name="Abrevia" class="txt"  value="<?php echo $abrev; ?>" >
+		  <input type="text"    id="Abrevia" name="Abrevia" class="txt"  value="<?php echo $abrev; ?>" required="required" >
 	  </div>
           <div>
         <?php if (isset($_GET["id_esc"])){ ?>
@@ -69,18 +70,3 @@ if (isset($_GET["id_esc"]))
 
    
    
-    <script language="JavaScript" type="text/javascript"
-    xml:space="preserve">//<![CDATA[
-//You should create the validator only after the definition of the HTML form
-  var frmvalidator  = new Validator("myform");
- frmvalidator.EnableOnPageErrorDisplaySingleBox();
- frmvalidator.EnableMsgsTogether();
- 
- frmvalidator.addValidation("Nombre","req","El nombre es requerido.");
- frmvalidator.addValidation("Comentario","req","Escribe un comentario.");
-  frmvalidator.addValidation("Abrevia","req","Escribe la abreviatura.");
-   
-
-//]]></script>
-
-

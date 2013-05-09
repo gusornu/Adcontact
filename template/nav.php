@@ -30,12 +30,6 @@
                             <a class="new-invoice-button modal"
                               href="<?php echo $nivel_dir; ?>estatus/estatus.php">Estatus</a>
                         </li>
-                    
-                    
-                        <li>
-                            <a class="change-pass-button modal"
-                               href="#">Contrasena</a>
-                        </li>
                     </ul>
                 </li>
                 
@@ -52,7 +46,7 @@
                     
                         <li>
                             <a class="change-pass-button modal"
-                               href="#">Contrasena</a>
+                               href="<?php echo $nivel_dir; ?>usuario/cambiar_contra.php">Contraseña</a>
                         </li>
                     </ul>
                 </li>                
@@ -62,7 +56,7 @@
                     <ul>                  
                         <li>
                             <a class="change-pass-button modal"
-                               href="#">Contrasena</a>
+                               href="<?php echo $nivel_dir; ?>usuario/cambiar_contra.php">Contrasena</a>
                         </li>
                         <li>
                             <a class="new-client-button modal"

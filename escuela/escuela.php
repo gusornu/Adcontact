@@ -53,6 +53,7 @@ include($nivel_dir.'template/top.php'); ?>
 		'width'				: 680,
 		'height'			: 450,
 		'type'				: 'iframe',
+		'scrolling'         : 'no',
 		'afterClose'          : function() { parent.location.reload(true); }
 	});
 });

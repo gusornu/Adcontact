@@ -81,10 +81,10 @@ if(isset($_GET['id']))
       }else{
         $contestado=0;
       }
-   $idz_usuario=$_SESSION["id"];
+   
    $query = "UPDATE persona SET nombre='".$_POST['nombre']."', apellido_pat='".$_POST['apellido_pat']."', apellido_mat='".$_POST['apellido_mat']."',
      sexo='".$_POST['sexo']."', tel_casa='".$_POST['telefono']."', tel_celular='".$_POST['celular']."', observaciones='".$_POST['observaciones']."', 
-     estatus='".$_POST['estatus']."', mail='".$_POST['email']."', id_medio='".$_POST['medio']."', contestado='".$contestado."', id_municipio='".$_POST['municipio']."', id_escuela = '".$idz_usuario."'
+     estatus='".$_POST['estatus']."', mail='".$_POST['email']."', id_medio='".$_POST['medio']."', contestado='".$contestado."', id_municipio='".$_POST['municipio']."', id_escuela = '".$_POST['escuela']."'
      WHERE id = '".$_POST['id']."'";
     //echo $query;
     $result = mysql_query($query) or die(mysql_error());
@@ -112,9 +112,9 @@ if(isset($_GET['id']))
         $contestado=0;
       }
       $query = "INSERT INTO persona
-      (nombre, apellido_pat, apellido_mat,sexo,tel_casa,tel_celular,observaciones,estatus,mail,id_medio,id_municipio,id_escuela,id_usuario)
+      (nombre, apellido_pat, apellido_mat,sexo,tel_casa,tel_celular,observaciones,estatus,mail,id_medio,id_municipio,id_escuela)
       VALUES
-      ('$_POST[nombre]', '$_POST[apellido_pat]','$_POST[apellido_mat]','$_POST[sexo]', '$_POST[telefono]', '$_POST[celular]', '$_POST[observaciones]', '$_POST[estatus]','$_POST[email]','$_POST[medio]','$_POST[municipio]','$_POST[escuela]','$_SESSION[id_usuario]')";
+      ('$_POST[nombre]', '$_POST[apellido_pat]','$_POST[apellido_mat]','$_POST[sexo]', '$_POST[telefono]', '$_POST[celular]', '$_POST[observaciones]', '$_POST[estatus]','$_POST[email]','$_POST[medio]','$_POST[municipio]','$_POST[escuela]')";
     //echo $query; exit;
     $result = mysql_query($query) or die(mysql_error());
     if(!$result)
@@ -134,7 +134,6 @@ if(isset($_GET['id']))
 <?php if(isset($_GET['borrado'])){ 
 
 $id= $_POST['id'];
-
 $query = "DELETE FROM persona WHERE id = '".$id."';";
 $result = mysql_query($query) or die(mysql_error());
 if(!$result)
@@ -151,11 +150,10 @@ if(!$result)
        // echo $id;
     }
 
- 
-}
-?>
+ }?>
 <?php if(isset($_GET['borrar'])){ 
-  ?>
+    $id_borrar=$_GET['id'];
+    ?> 
 
 <div class="form clearfix">
     <div class="form-header">
@@ -167,15 +165,7 @@ if(!$result)
        
   
   <div id="myform_errorloc"></div></div>
-   <?php
-    $id_borrar=$_GET['id'];
-    $query = "SELECT * FROM seguimiento WHERE id_persona = '".$id_borrar."';";
-$result = mysql_query($query) or die(mysql_error());
-if(!mysql_num_rows($result) >= 1)
-{
-    ?> 
-
-
+   
     <form id="new_project" name="miform" action="persona.php?borrado" method="post">
 
     <h2> Realmente decea borrar?</h2>
@@ -186,14 +176,6 @@ if(!mysql_num_rows($result) >= 1)
         </div>
 
     </form>
-    <?php } else{
-
-        echo "<h2> La persona no se puede borrar por que tiene por lo menos un seguimiento!</h2>";
-
-    }
-    ?>
-    </div>
-    </div>
 <?php } if(isset($_GET['editar'])){ ?> 
 <div class="form clearfix">
     <div class="form-header">
@@ -210,18 +192,18 @@ if(!mysql_num_rows($result) >= 1)
 
         <div>
             <label>Nombre</label>
-            <input type="text" value="<?=$nombre?>" name="nombre" id="name" class="skinny" required>
+            <input type="text" value="<?=$nombre?>" name="nombre" id="name" class="skinny" >
             
-            <input type="text" name="apellido_pat" id="name" class="skinny" placeholder="Paterno" value="<?=$apellido_pat?>" required>
+            <input type="text" name="apellido_pat" id="name" class="skinny" placeholder="Paterno" value="<?=$apellido_pat?>">
             
-            <input type="text" name="apellido_mat" id="name" class="skinny" placeholder="Materno" value="<?=$apellido_mat?>" required>
+            <input type="text" name="apellido_mat" id="name" class="skinny" placeholder="Materno" value="<?=$apellido_mat?>">
             
         </div>
 
 
         <div>
             <label>Sexo</label>
-            <select name="sexo" id="client_id" class="wide" required>
+            <select name="sexo" id="client_id" class="wide">
                 <option value=""></option>
                 
 
@@ -241,21 +223,21 @@ if(!mysql_num_rows($result) >= 1)
         </div>
         <div>
             <label>Telefono</label>
-            <input type="text"  name="telefono" class="wide" placeholder="6424234567" value="<?=$tel_casa?> " required>
+            <input type="text" name="telefono" class="wide" placeholder="6424234567" value="<?=$tel_casa?>">
             <label>Celular</label>
-            <input type="text" name="celular" class="wide" placeholder="6421234567" value="<?=$tel_celular?>" required>
+            <input type="text" name="celular" class="wide" placeholder="6421234567" value="<?=$tel_celular?>">
             <label>Email</label>
-            <input type="text" name="email" class="wide" placeholder="exemplo@dominio.com " value="<?=$mail?>" required>
+            <input type="text" name="email" class="wide" placeholder="exemplo@dominio.com " value="<?=$mail?>">
             
         </div>
         <div>
             <label>Observaciones</label>
-            <textarea name="observaciones" class="wide" required><?=$observaciones?></textarea>
+            <textarea name="observaciones" class="wide"><?=$observaciones?></textarea>
         </div>
 
        <div>
             <label>Estatus</label>
-            <select name="estatus" class="wide" required>
+            <select name="estatus" class="wide">
                 <option value=""></option>
 
                             <option value="1" <?php
@@ -274,7 +256,7 @@ if(!mysql_num_rows($result) >= 1)
         </div>
         <div>
             <label>Medio</label>
-            <select name="medio" class="wide" required>
+            <select name="medio" class="wide">
                 <option value="0"></option>
 <?php 
 $resulty=mysql_query("SELECT * FROM medio ;");
@@ -299,7 +281,7 @@ while( $rowy=mysql_fetch_array($resulty) )
         </div>
         <div>
             <label>Escuela</label>
-            <select name="escuela" class="wide" required>
+            <select name="escuela" class="wide">
                 <option value=""></option>
 
                           <?php 
@@ -357,7 +339,7 @@ while( $rowx=mysql_fetch_array($resultx) )
         </div>
         <div>
             <label>Municipio</label>
-            <select name="municipio" class="wide" required>
+            <select name="municipio" class="wide">
                 <option value=""></option>
 <?php 
 $resultx=mysql_query("SELECT * FROM municipios ;");
@@ -382,7 +364,7 @@ while( $rowx=mysql_fetch_array($resultx) )
         </div>
     
         <div class="clearfix">
-            <input type="hidden" name="id" value="<?=$id?>" required>
+            <input type="hidden" name="id" value="<?=$id?>">
 
             <div class="button large"><input type="submit" value="Guardar"></div>
         </div>

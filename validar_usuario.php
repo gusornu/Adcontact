@@ -34,10 +34,11 @@ if(isset($_POST['usuario']))
 		$id_usuario=$rdp[id_usuario];
 		
 		
-		//session_register('id_usuario');
+		session_register('id_usuario');
         $_SESSION["id_usuario"]=$nombre_persona;
 		$_SESSION["nombre"]=$nombre_persona;
   		$_SESSION["tipo"]=$rdp[tipo];
+		$_SESSION["id"]=$rdp[id_usuario];
 			
 		header("Location: contacto.php");
     }else

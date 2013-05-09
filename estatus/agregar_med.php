@@ -48,7 +48,7 @@ if (isset($_GET["id_med"]))
           <div>
 		  <label for="Comentarios">Comentario</label>
 		 
-		  <input class="skinny" type="text" size="40"	   id="Comentario" name="Comentario" value="<?php echo $comentario ?>" >;
+		  <input class="skinny" type="text" size="40"	   id="Comentario" name="Comentario" value="<?php echo $comentario ?>" >
           </div>
           <div>
           <label for="estatu">Estatus</label>

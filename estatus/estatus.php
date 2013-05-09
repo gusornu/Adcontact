@@ -1,4 +1,8 @@
- <?php $nivel_dir="../"; ?>
+ <?php 
+/*
+*$nivel_dir: obtener configuracion de los niveles de la base de datos
+*/
+ $nivel_dir="../"; ?>
 
 <?PHP 
 
@@ -46,7 +50,7 @@ include($nivel_dir.'template/top.php'); ?>
 		'transitionIn'		: 'none',
 		'transitionOut'		: 'none',
 		'width'				: 480,
-		'height'			: 300,
+		'height'			: 100,
 		'type'				: 'iframe',
 		'afterClose'          : function() { parent.location.reload(true); }
 	});

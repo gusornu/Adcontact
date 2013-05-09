@@ -51,6 +51,7 @@ include($nivel_dir.'template/top.php'); ?>
 		'width'				: 480,
 		'height'			: 300,
 		'type'				: 'iframe',
+		'scrolling'         : 'no',
 		'afterClose'          : function() { parent.location.reload(true); }
 	});
 });
@@ -60,6 +61,12 @@ include($nivel_dir.'template/top.php'); ?>
 <!-- Fin del bloque de formulario   -->
 
 <?PHP
+
+
+//session_start();
+if(isset($_SESSION["id"]))
+echo $id=$_SESSION["id"];
+	 
 //mandar query con la seleccion
 
 $query = "SELECT * FROM medio;";

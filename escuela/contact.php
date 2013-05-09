@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
 <title>Untitled Document</title>
 
 </head>
@@ -31,8 +32,8 @@
 		//$("#form").submit(function() { return false; });
 	//	});
 
-//fuction verifica: ealiza una comprobación en los formularios que aparecen a continuacion
-		
+
+	//fuction verifica: ealiza una comprobación en los formularios que aparecen a continuacion
 function verifica(){
 	 if(document.form.uno.value =="")
 				  {

@@ -31,31 +31,6 @@ $pagetit="Modulo de Busqueda";
 include($nivel_dir.'template/top.php'); ?>
 
 <?php
-echo $_POST["estado"];
- if(isset($_POST["estado"]))
-   {
-   
-
-  $estado =$_POST["estado"];
-    
-   // echo "<option value='00'>ERROR!!! con id".$estado."</option> ";
-   echo $query = "SELECT * FROM municipios WHERE id_estado=$estado";
-    
-    $result = mysql_query($query);
-  //  if(!$result)
-  //  {    
-    while ($row = mysql_fetch_array($result)) {
-        echo "<option value='" .$row{'id_municipio'}."'>" . $row{'municipio'} . "</option>";
-    }
-   // }
-    //else
-    //{
-    // echo "<option value='00'>ERROR!!!</option> ";
-
-   // }
-
-   }
-   //Modulo de consultas, valida todas las variables de busqueda.
 if(isset($_POST["submit"])){
 
 	// Recibimos la variable buscar del formulario de búsqueda desde el método POST
@@ -174,7 +149,7 @@ if(isset($_POST["submit"])){
             <script>
         $(function() {
         $("#estado").change(function() {
-                $("#municipio").load("buscar.php?estado=" + $("#estado").val());
+                $("#municipio").load("persona.php?estado=" + $("#estado").val());
             });
         
         });

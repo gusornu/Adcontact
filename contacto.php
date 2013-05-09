@@ -8,10 +8,10 @@ $pagetit="Pagina de companeros";
 //obtener configuracion de la base de datos
 
 require ($nivel_dir.'includes/config.php');
-//require ($nivel_dir.'includes/existeconexion.php');
+require ($nivel_dir.'includes/existeconexion.php');
 //variables necesarias
 if(!isset($_GET['page'])){
-echo $_SESSION["usuario"];
+//echo $_SESSION["usuario"];
 $page = 1;
 
 }else{
@@ -131,7 +131,11 @@ $id_escuela=htmlentities($row['id_escuela']);
 				echo "<tr>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $apellido_pat ." ". $nombre." ". $apellido_mat."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $tel_casa."</a></td>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $estatus."</a></td>";
+				$quere = "SELECT * FROM estatus WHERE id_estatus=$estatus";
+				$resulte = mysql_query($quere) or die(mysql_error());
+				$estata = mysql_fetch_array($resulte);
+				$estatuz = $estata['abrev'];
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $estatuz."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $mail."</a></td>";
 				$queri = "SELECT * FROM escuela WHERE id_escuela=$id_escuela";
 				$resultz = mysql_query($queri) or die(mysql_error());

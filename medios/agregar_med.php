@@ -1,7 +1,7 @@
-
 <?PHP 
-
-//obtener configuracion de la base de datos
+/*
+*$nivel_dir: obtener configuracion de los niveles de la base de datos
+*/
 $nivel_dir="../";
 include ($nivel_dir.'includes/config.php');
 //variables necesarias
@@ -42,19 +42,19 @@ if (isset($_GET["id_med"]))
 		  <label for="Nombres">Nombre del Medio de contacto</label>
 		  
           
-		  <input class="skinny" type="text" id="Nombre" name="Nombre"  value="<?php echo $nombre; ?>"  size="40">
+		  <input class="skinny" type="text" id="Nombre" name="Nombre"  value="<?php echo $nombre; ?>"  size="40" required="required">
 		  </div>
         
           <div>
 		  <label for="Comentarios">Comentario</label>
 		 
-		  <input class="skinny" type="text" size="40"	   id="Comentario" name="Comentario" value="<?php echo $comentario ?>" >;
+		  <input class="skinny" type="text" size="40"	   id="Comentario" name="Comentario" value="<?php echo $comentario ?>"  required="required">
           </div>
           <div>
-          <label for="estatu">Estatus</label>
+          <label for="estatu">Estatus</label >
 		  
         
-		  <select class="wide" name="estatus" id="estatus" >
+		  <select class="wide" name="estatus" id="estatus" required="required" >
            <?php if ($row1['estatus']=="activo"){ ?>
            <option selected value="activo">Activo</option>
           <?php  } else if($row1['estatus']=="inactivo"){ ?>
@@ -83,17 +83,4 @@ if (isset($_GET["id_med"]))
 
    
 
-    <script language="JavaScript" type="text/javascript"
-    xml:space="preserve">//<![CDATA[
-//You should create the validator only after the definition of the HTML form
-  var frmvalidator  = new Validator("myform");
- frmvalidator.EnableOnPageErrorDisplaySingleBox();
- frmvalidator.EnableMsgsTogether();
- 
- frmvalidator.addValidation("Nombre","req","El nombre es requerido.");
- frmvalidator.addValidation("Comentario","req","Escribe un comentario.");
-  frmvalidator.addValidation("status","req","Elige el status del medio.");
-   
-
-//]]></script>
 

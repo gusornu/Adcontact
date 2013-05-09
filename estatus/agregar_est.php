@@ -1,11 +1,14 @@
 
 <?PHP 
-
-//obtener configuracion de la base de datos
+/*
+*$nivel_dir: obtener configuracion de los niveles de la base de datos
+*/
 $nivel_dir="../";
 include ($nivel_dir.'includes/config.php');
+
 //variables necesarias
 //include ($nivel_dir.'includes/existeconexion.php');
+
 require_once($nivel_dir.'template/pop.php');
 
 if (isset($_GET["id_est"]))
@@ -42,19 +45,19 @@ if (isset($_GET["id_est"]))
 		  <label for="Nombres">Nombre del Estatus</label>
 		  
           
-		  <input class="skinny" type="text" id="Nombre" name="nombre"  value="<?php echo $nombre; ?>"  size="40">
+		  <input class="skinny" type="text" id="Nombre" name="nombre"  value="<?php echo $nombre; ?>"  size="40" required="required">
 		  </div>
         
           <div>
 		  <label for="abrev">Abreviatura</label>
 		 
-		  <input class="skinny" type="text" size="40"	   id="abrev" name="abrev" value="<?php echo $abrev ?>" >;
+		  <input class="skinny" type="text" size="40"	   id="abrev" name="abrev" value="<?php echo $abrev ?>" required="required" >	
           </div>
           <div>
           <label for="estatu">Estatus</label>
 		  
         
-		  <select class="wide" name="estatus" id="estatus" >
+		  <select class="wide" name="estatus" id="estatus" required="required" >
            <?php if ($row1['estatus']=="activo"){ ?>
            <option selected value="activo">Activo</option>
           <?php  } else if($row1['estatus']=="inactivo"){ ?>
@@ -83,17 +86,4 @@ if (isset($_GET["id_est"]))
 
    
 
-    <script language="JavaScript" type="text/javascript"
-    xml:space="preserve">//<![CDATA[
-//You should create the validator only after the definition of the HTML form
-  var frmvalidator  = new Validator("myform");
- frmvalidator.EnableOnPageErrorDisplaySingleBox();
- frmvalidator.EnableMsgsTogether();
- 
- frmvalidator.addValidation("Nombre","req","El nombre es requerido.");
- frmvalidator.addValidation("abreviatura","req","Escribe una abreviatura.");
-  frmvalidator.addValidation("status","req","Elige el status del medio.");
-   
-
-//]]></script>
-
+    

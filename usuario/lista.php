@@ -2,12 +2,15 @@
 
 <?PHP 
 
-
-//obtener configuracion de la base de datos
+/*
+*obtener configuracion de la base de datos
+*/
 
 require ($nivel_dir.'includes/config.php');
-//variables necesarias
 
+/*
+*variables necesarias
+*/
 ?>
 
 <?php
@@ -15,18 +18,23 @@ require ($nivel_dir.'includes/config.php');
 require ($nivel_dir.'includes/existeconexion.php');
 require ($nivel_dir.'includes/existeconexion2.php');
 
-
-//titulo
+/*
+*titulo
+*/
 $tit="Usuario";
 
-//titulo de pagina
+/*
+*titulo de pagina
+*/
 $pagetit="Modulo de Usuario";
 ?>
 
 
 
 <?php
-//incluir toda la parte de ariba del template 
+/*
+*incluir toda la parte de ariba del template 
+*/
 include($nivel_dir.'template/top.php'); ?>
 
 
@@ -47,8 +55,8 @@ include($nivel_dir.'template/top.php'); ?>
 		'autoScale'			: false,
 		'transitionIn'		: 'none',
 		'transitionOut'		: 'none',
-		'width'				: 280,
-		'height'			: 300,
+		'width'				: 680,
+		'height'			: 450,
 		'type'				: 'iframe',
 		'afterClose'          : function() { parent.location.reload(true); }
 	});
@@ -59,17 +67,22 @@ include($nivel_dir.'template/top.php'); ?>
 <!-- Fin del bloque de formulario   -->
 
 <?PHP
-//mandar query con la seleccion
+/*
+*mandar query con la seleccion
+*/
 $query = "SELECT * FROM usuario";
 
 $result = mysql_query($query) or die(mysql_error());
 
-//Contar el numero de filas.
+/*
+*Contar el numero de filas.
+*/
 $count = mysql_num_rows($result);
 
 
-
-//Table header
+/*
+*Table header
+*/
 echo "<table class=\"list\">\n";
 echo "<tr class=\"table-header\">\n";
 echo "<th class=\"\">Id</th>\n";
@@ -102,7 +115,7 @@ $tipo=htmlentities($row['tipo']);
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $matricula."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $tipo."</a></td>";	
 
-echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"agregar_usuarios.php?id_usuario=".$id."\"><span>Editar</span></a></td>";
+echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"agregar_usuarios.php?id_usu=".$id."\"><span>Editar</span></a></td>";
 echo "<td class=\"action\"><a class=\"modalbox small-button danger modal\" href=\"borrar.php?del=".$id."\"><span>Borrar</span></a></td>";
 echo "<td class=\"action\"><a class=\"modalbox small-button  modal\" href=\"agregar_usuarios.php?insert=ok\"><span>Agregar Usuario</span></a></td></tr>";
 			}
@@ -115,8 +128,13 @@ echo "<b><center>NO DATA</center></b>\n";
 
 
 <?PHP 
-//incluir footer y la parte de abajo
+
+/*
+*incluir footer y la parte de abajo
+*/
+
 include($nivel_dir.'template/bottom.php');
+
 // Footer
 //include($nivel_dir.'template/footer.php');
 
