@@ -1,7 +1,7 @@
 <ul class="tab_menu wrapper">
 
                     <li class="selected">
-                <a href="pagina.php"><span>Hoy</span></a>
+                <a href="hoy.php"><span>Hoy</span></a>
             </li>
         
             <li class="">

@@ -52,7 +52,7 @@ if (isset($_POST["id_user"]))
 if (isset($_POST["id_contra"]))
 	{
 	
-		$query = "UPDATE promocion.usuario SET contrasena='".md5($_POST["contrasena"])."' WHERE usuario.id_usuario='".$_POST["id_user"]."' ";
+		$query = "UPDATE promocion.usuario SET contrasena='".md5($_POST["contrasena"])."' WHERE usuario.id_usuario='".$_POST["id_contra"]."' ";
 		$result = mysql_query($query) or die(mysql_error());
 		$row1 = mysql_fetch_array($result);
 		$id_esc=$row['id_usuario'];

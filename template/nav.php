@@ -45,7 +45,7 @@
                         </li>
                     
                         <li>
-                            <a class="change-pass-button modal"
+                            <a class="modalbox change-pass-button modal"
                                href="<?php echo $nivel_dir; ?>usuario/cambiar_contra.php">Contraseña</a>
                         </li>
                     </ul>
@@ -55,7 +55,7 @@
                     <a href="#">Bienvenido <?php echo $_SESSION["nombre"];?></a>
                     <ul>                  
                         <li>
-                            <a class="change-pass-button modal"
+                            <a class="modalbox change-pass-button modal"
                                href="<?php echo $nivel_dir; ?>usuario/cambiar_contra.php">Contrasena</a>
                         </li>
                         <li>

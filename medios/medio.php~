@@ -1,5 +1,6 @@
 <?php $nivel_dir="../"; ?>
 
+
 <?PHP 
 
 
@@ -13,6 +14,8 @@ require ($nivel_dir.'includes/config.php');
 <?php
 
 require ($nivel_dir.'includes/existeconexion.php');
+require ($nivel_dir.'includes/existeconexion2.php');
+
 
 //titulo
 $tit="Medios";
@@ -45,8 +48,8 @@ include($nivel_dir.'template/top.php'); ?>
 		'autoScale'			: false,
 		'transitionIn'		: 'none',
 		'transitionOut'		: 'none',
-		'width'				: 280,
-		'height'			: 300,
+		'width'				: 480,
+		'height'			: 100,
 		'type'				: 'iframe',
 		'afterClose'          : function() { parent.location.reload(true); }
 	});

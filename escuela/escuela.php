@@ -2,9 +2,7 @@
 /*
 *$nivel_dir: obtener configuracion de los niveles de la base de datos
 */
- $nivel_dir="../"; ?>
-
-<?PHP 
+ $nivel_dir="../"; 
 
 
 //obtener configuracion de la base de datos
@@ -12,23 +10,30 @@
 require ($nivel_dir.'includes/config.php');
 //variables necesarias
 
-?>
-
-<?php
 
 require ($nivel_dir.'includes/existeconexion.php');
 require ($nivel_dir.'includes/existeconexion2.php');
+
+
+//// inicion de paginacion
+if(!isset($_GET['page'])){
+//echo $_SESSION["usuario"];
+$page = 1;
+
+}else{
+
+// If page is set, let's get it
+$page = $_GET['page'];
+}
+///  fin de paginacion
+
 
 //titulo
 $tit="Escuelas";
 
 //titulo de pagina
 $pagetit="Modulo de escuelas";
-?>
 
-
-
-<?php
 //incluir toda la parte de ariba del template 
 include($nivel_dir.'template/top.php'); ?>
 
@@ -63,10 +68,20 @@ include($nivel_dir.'template/top.php'); ?>
 <!-- Fin del bloque de formulario   -->
 
 <?PHP
+
+
+
+
+
+//pagination//
+$table="escuela"; // nombre de la tabla que usamos
+$porpagina="10"; //numero por pagina
+include($nivel_dir.'includes/pagination.php'); //cargar paginacion
+$pnombre="escuela"; //nombre de la pagina que estamos usando
+
+
 //mandar query con la seleccion
-
-$query = "SELECT * FROM escuela;";
-
+$query = "SELECT * FROM escuela Limit $start, $porpagina;";
 $result = mysql_query($query) or die(mysql_error());
 
 //Contar el numero de filas.

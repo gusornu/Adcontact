@@ -20,12 +20,12 @@ if (isset($_GET["id_usu"]))
 		$result1 = mysql_query($query1) or die(mysql_error());
 		$row1 = mysql_fetch_array($result1);
 		$id_usu=$row1['id_usuario'];
-		$contrasena=$md5['contrasena'];
+		$contrasena=$row1['contrasena'];
 
 } else {
 		$id_usu="";
-		$contraseña1="";
-		$contraseña2="";
+		$contrasena1="";
+		$contrasena2="";
 		}
 ?>
 
@@ -40,28 +40,23 @@ if (isset($_GET["id_usu"]))
     </div>
     
      <div class="error_list clearfix">
-    <div id="myform_errorloc"></div></div>
+    <div id="myform_errorloc"><?php if(isset($_GET["no"])) { echo "Las contraseñas que ingresaste no coinciden";} else { }    ?></div></div>
 
 
-	<form id="new_project" name="myform" action="inserta_usuario.php?id_user111=<?php echo $_GET["id_usu"];?>" method="post">
+	<form id="new_project" name="myform" action="verifica_contra.php" method="post">
     
           <div>
 		  <label for="Contrasena1">Contraseña</label>
-		  <input class="skinny" type="password" id="contrasena" name="contrasena"  value="<?php echo $contrasena; ?>"  size="40">
+		  <input class="skinny" type="texto" id="contrasena1" name="contrasena1"  value="<?php echo $contrasena1; ?>"  size="40">
 		  </div>
           
           <div>
-		  <label for="Contrasena2">Contraseña</label>
-		  <input class="skinny" type="password" id="contrasena" name="contrasena"  value="<?php echo $contrasena; ?>"  size="40">
+		  <label for="Contrasena2">Confirma Contraseña</label>
+		  <input class="skinny" type="texto" id="contrasena2" name="contrasena2"  value="<?php echo $contrasena2; ?>"  size="40">
 		  </div>
           
-                  
-        <?php if (isset($_GET["id_usu"])){ ?>
-		  <input name="id_contra" type="hidden"  id="id_contra"  value="<?php echo $_GET["id_usu"]; ?>" >
-        <?php  } else{ ?>
-         <input name="insert" type="hidden"  id="insert"  value=1 >
-        <?php }?>
-        
+		 <input name="id_contra" type="hidden"  id="id_contra"  value="<?php echo $_GET["id_usu"]; ?>" >
+       
           		  
 		  <br>
  
@@ -77,15 +72,10 @@ if (isset($_GET["id_usu"]))
  frmvalidator.EnableOnPageErrorDisplaySingleBox();
  frmvalidator.EnableMsgsTogether();
  
- frmvalidator.addValidation("Contraseña1","req","La contaseña del usurio es requerido.");
-  frmvalidator.addValidation("Contraseña2","req","La contaseña del usurio es requerido.");
+ frmvalidator.addValidation("Contraseña1","req","La contaseña del usuario es requerido.");
+  frmvalidator.addValidation("Contraseña2","req","La contaseña del usuario es requerido.");
       
 
 //]]></script>
 
 
-$password	= "secreto";
-$password2	= "Secreto";
-	if(strcmp($password, $password2) != 0) {
-		echo "Las contrasenas no coinciden";
-	}

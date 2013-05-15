@@ -10,8 +10,6 @@ $pagetit="Pagina de companeros";
 require ($nivel_dir.'includes/config.php');
 require ($nivel_dir.'includes/existeconexion.php');
 //variables necesarias
-
-//// inicion de paginacion
 if(!isset($_GET['page'])){
 //echo $_SESSION["usuario"];
 $page = 1;
@@ -21,28 +19,18 @@ $page = 1;
 // If page is set, let's get it
 $page = $_GET['page'];
 }
-///  fin de paginacion
-
 
 if(!isset($_GET['orden'])){
-$orden = "id";
+$orden = "id_seguimiento";
 }else{
 // If page is set, let's get it
 $orden = $_GET['orden'];
 }
 
-?>
-
-
-
-<?php
 //incluir toda la parte de ariba del template 
 include($nivel_dir.'template/top.php'); ?>
-
-
- <?php ?>
  
-<!-- Seccion del formulario ------  hidden inline form -->
+<!-- Seccion del formulario hidden inline form -->
 
 
 <!-- basic fancybox setup -->
@@ -71,17 +59,11 @@ include($nivel_dir.'template/top.php'); ?>
 <!-- Fin del bloque de formulario   -->
 
 <?PHP
-//pagination//
-$table="persona"; // nombre de la tabla que usamos
-$porpagina="4"; //numero por pagina
-include($nivel_dir.'includes/pagination.php'); //cargar paginacion
-$pnombre="contacto"; //nombre de la pagina que estamos usando
-
-
 //mandar query con la seleccion
 //echo "SELECT * FROM persona ORDER BY $orden;";
-$query = "SELECT * FROM persona ORDER BY $orden Limit $start, $porpagina ;";
 
+$query = "SELECT * FROM seguimiento WHERE   fecha_seguimiento =CURDATE() ORDER BY $orden;";
+//echo $query;
 $result = mysql_query($query) or die(mysql_error());
 
 //Contar el numero de filas.
@@ -116,68 +98,48 @@ echo $alerta;
 }
 echo "<table class=\"list\">\n";
 echo "<tr class=\"table-header\">\n";
-echo "<th class=\"\"><a href=\"contacto.php?page=".$page."&orden=apellido_pat\">Nombre</a></th>\n";
-echo "<th class=\"\">Tel Casa</th>\n";
+echo "<th class=\"\"><a href=\"hoy.php?page=".$page."&orden=apellido_pat\">Nombre</a></th>\n";
+echo "<th class=\"\">Fecha Captura</th>\n";
+echo "<th class=\"\">Medio</th>\n";
+echo "<th class=\"\">Observ</th>\n";
 echo "<th class=\"\">Estatus</th>\n";
-echo "<th class=\"\">mail</th>\n";
-echo "<th class=\"\">Escuela</th>\n";
 echo "<th class=\"action\"></th>";
 echo "<th class=\"action\"></th>";
 echo "<th class=\"action\"></th>";
 echo "</tr>";
 if ($count !== 0) {
 while($row = mysql_fetch_array($result)) {
-$id=$row['id'];
-$nombre=htmlentities($row['nombre']);
-$apellido_pat=htmlentities($row['apellido_pat']);
-$apellido_mat=htmlentities($row['apellido_mat']);
-$sexo=htmlentities($row['sexo']); 
-$tel_casa=htmlentities($row['tel_casa']); 
-$tel_celular=htmlentities($row['tel_celular']); 
-$observaciones=htmlentities($row['observaciones']); 
-$estatus=htmlentities($row['estatus']); 
-$mail=htmlentities($row['mail']); 
-$id_municipio=htmlentities($row['id_municipio']); 
-$id_escuela=htmlentities($row['id_escuela']); 
+$id=$row['id_seguimiento'];
+$nombre_id=$row['id_persona'];
+$fechacap=($row['fecha']);
+$medio=htmlentities($row['id_medio']);
+$obser=htmlentities($row['observacion']); 
+$estatus=htmlentities($row['estatus']);
 				echo "<tr>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $apellido_pat ." ". $nombre." ". $apellido_mat."</a></td>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $tel_casa."</a></td>";
-				$quere = "SELECT * FROM estatus WHERE id_estatus=$estatus";
+				$quere = "SELECT * FROM persona WHERE id=$nombre_id";
 				$resulte = mysql_query($quere) or die(mysql_error());
 				$estata = mysql_fetch_array($resulte);
-				$estatuz = $estata['abrev'];
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $estatuz."</a></td>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $mail."</a></td>";
-				$queri = "SELECT * FROM escuela WHERE id_escuela=$id_escuela";
-				$resultz = mysql_query($queri) or die(mysql_error());
-				$escuela = mysql_fetch_array($resultz);
-				$ABR = $escuela['abrev'];
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $ABR ."</a></td>";
+				$nombre=htmlentities($estata['nombre']);
+				$apellido_pat=htmlentities($estata['apellido_pat']);
+				$apellido_mat=htmlentities($estata['apellido_mat']);
+
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $apellido_pat ." ". $nombre." ". $apellido_mat."</a></td>";
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $fechacap."</a></td>";
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $medio."</a></td>";
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $obser."</a></td>";
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $estatus ."</a></td>";
 
 				//echo "	<input type=\"image\" src=\"images/update.png\" alt=\"Update Row\" class=\"update\" title=\"Update Row\">\n";
 				echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"personas/persona.php?editar&id=".$id."\"><span>Editar</span></a></td>";
 				echo "<td class=\"action\"><a class=\"modalbox small-button danger modal\" href=\"personas/persona.php?borrar&id=".$id."\"><span>Borrar</span></a></td>";
 				echo "<td class=\"action\"><a class=\"modalbox small-button  modal\" href=\"personas/seg.php?nuevo&id=".$id."\"><span>Seguimiento</span></a></td></tr>";
-				
-				$queryz = "SELECT * FROM `seguimiento` WHERE id_persona=$id;";
-				$resultz = mysql_query($queryz) or die(mysql_error());
-				$countz = mysql_num_rows($resultz);
-				if ($countz !== 0) {echo "<tr><td colspan=\"5\"><ul>";
-				while($row = mysql_fetch_array($resultz)) {
-				$idz=$row['id_persona'];
-				$fechaz=htmlentities($row['fecha_seguimiento']);
-				$descz=htmlentities($row['observacion']);
-				$ids=$row['id_seguimiento'];			
-				echo "<li><a  class=\"modalbox modal\" href=\"personas/seg.php?editar&id=".$ids."\">Seguimiento pendiente fecha: ".$fechaz." descripcion: ". $descz." </a></li>";
-				}
-				echo "</ul></td>";
 				//echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"personas/seg.php?editar&id=".$id."\"><span>Editar</span></a></td>";
 				//echo "<td class=\"action\"><a class=\"modalbox small-button danger modal\" href=\"personas/persona.php?borrar&id=".$id."\"><span>Borrar</span></a></td>";
 				
 				echo "</tr>";
 			}
 				
-			}
+			
 		echo "</table><br />\n";
 	} else {
 		echo "<b><center>NO DATA</center></b>\n";

@@ -1,36 +1,29 @@
- <?php 
+<?php
 /*
 *$nivel_dir: obtener configuracion de los niveles de la base de datos
 */
- $nivel_dir="../"; 
+ $nivel_dir="../"; ?>
+
+<?PHP 
+
 
 //obtener configuracion de la base de datos
 
 require ($nivel_dir.'includes/config.php');
 //variables necesarias
 
+?>
+
+<?php
+
 require ($nivel_dir.'includes/existeconexion.php');
-
-
-//// inicion de paginacion
-if(!isset($_GET['page'])){
-//echo $_SESSION["usuario"];
-$page = 1;
-
-}else{
-
-// If page is set, let's get it
-$page = $_GET['page'];
-}
-///  fin de paginacion
-
-
+require ($nivel_dir.'includes/existeconexion2.php');
 
 //titulo
-$tit="Estatus";
+$tit="Escuelas";
 
 //titulo de pagina
-$pagetit="Modulo de Estatus";
+$pagetit="Modulo de escuelas";
 ?>
 
 
@@ -44,7 +37,7 @@ include($nivel_dir.'template/top.php'); ?>
  
 <!-- Seccion del formulario ------  hidden inline form -->
 
- 
+
 <!-- basic fancybox setup -->
  
  <script type="text/javascript" language="javascript">
@@ -57,8 +50,8 @@ include($nivel_dir.'template/top.php'); ?>
 		'autoScale'			: false,
 		'transitionIn'		: 'none',
 		'transitionOut'		: 'none',
-		'width'				: 480,
-		'height'			: 100,
+		'width'				: 680,
+		'height'			: 450,
 		'type'				: 'iframe',
 		'afterClose'          : function() { parent.location.reload(true); }
 	});
@@ -69,18 +62,9 @@ include($nivel_dir.'template/top.php'); ?>
 <!-- Fin del bloque de formulario   -->
 
 <?PHP
-
-
-//pagination//
-$table="estatus"; // nombre de la tabla que usamos
-$porpagina="10"; //numero por pagina
-include($nivel_dir.'includes/pagination.php'); //cargar paginacion
-$pnombre="estatus"; //nombre de la pagina que estamos usando
-
-
 //mandar query con la seleccion
 
-$query = "SELECT * FROM estatus Limit $start, $porpagina;";
+$query = "SELECT * FROM escuela;";
 
 $result = mysql_query($query) or die(mysql_error());
 
@@ -94,7 +78,7 @@ echo "<table class=\"list\">\n";
 echo "<tr class=\"table-header\">\n";
 echo "<th class=\"\">Id</th>\n";
 echo "<th class=\"\">Nombre</th>\n";
-echo "<th class=\"\">Estatus</th>\n";
+echo "<th class=\"\">Comentario</th>\n";
 echo "<th class=\"\">Abrev</th>\n";
 echo "<th class=\"action\"></th>";
 echo "<th class=\"action\"></th>";
@@ -102,21 +86,20 @@ echo "<th class=\"action\"></th>";
 echo "</tr>";
 if ($count !== 0) {
 while($row = mysql_fetch_array($result)) {
-$id=$row['id_estatus'];
+$id=$row['id_escuela'];
 $nombre=htmlentities($row['nombre']);
+$comentario=htmlentities($row['comentario']);
 $abrev=htmlentities($row['abrev']);
-$estatus=htmlentities($row['estatus']);
 				echo "<tr>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $id ."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $nombre."</a></td>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $estatus."</a></td>";	
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $comentario."</a></td>";	
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $abrev."</a></td>";
 
-
 				//echo "	<input type=\"image\" src=\"images/update.png\" alt=\"Update Row\" class=\"update\" title=\"Update Row\">\n";
-				echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"agregar_est.php?id_est=".$id."\"><span>Editar</span></a></td>";
-				echo "<td class=\"action\"><a class=\"modalbox small-button danger modal\" href=\"borrar_est.php?del=".$id."\"><span>Borrar</span></a></td>";
-				echo "<td class=\"action\"><a class=\"modalbox small-button  modal\" href=\"agregar_est.php?insert=ok\"><span>Agregar Estatus</span></a></td></tr>";
+				echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"agregar_esc.php?id_esc=".$id."\"><span>Editar</span></a></td>";
+				echo "<td class=\"action\"><a class=\"modalbox small-button danger modal\" href=\"borrar_esc.php?del=".$id."\"><span>Borrar</span></a></td>";
+				echo "<td class=\"action\"><a class=\"modalbox small-button  modal\" href=\"agregar_esc.php?insert=ok\"><span>Agregar Escuela</span></a></td></tr>";
 			}
 		echo "</table><br />\n";
 	} else {

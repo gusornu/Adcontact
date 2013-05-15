@@ -1,7 +1,4 @@
-<?php $nivel_dir="../"; ?>
-
-
-<?PHP 
+<?php $nivel_dir="../"; 
 
 
 //obtener configuracion de la base de datos
@@ -9,12 +6,22 @@
 require ($nivel_dir.'includes/config.php');
 //variables necesarias
 
-?>
 
-<?php
 
 require ($nivel_dir.'includes/existeconexion.php');
 require ($nivel_dir.'includes/existeconexion2.php');
+
+//// inicion de paginacion
+if(!isset($_GET['page'])){
+//echo $_SESSION["usuario"];
+$page = 1;
+
+}else{
+
+// If page is set, let's get it
+$page = $_GET['page'];
+}
+///  fin de paginacion
 
 
 //titulo
@@ -22,16 +29,10 @@ $tit="Medios";
 
 //titulo de pagina
 $pagetit="Modulo de Medios";
-?>
 
-
-
-<?php
 //incluir toda la parte de ariba del template 
-include($nivel_dir.'template/top.php'); ?>
-
-
- <?php ?>
+include($nivel_dir.'template/top.php'); 
+ ?>
  
 <!-- Seccion del formulario ------  hidden inline form -->
 
@@ -61,15 +62,19 @@ include($nivel_dir.'template/top.php'); ?>
 <!-- Fin del bloque de formulario   -->
 
 <?PHP
-
+//pagination//
+$table="medio"; // nombre de la tabla que usamos
+$porpagina="10"; //numero por pagina
+include($nivel_dir.'includes/pagination.php'); //cargar paginacion
+$pnombre="medio"; //nombre de la pagina que estamos usando
 
 //session_start();
 if(isset($_SESSION["id"]))
-echo $id=$_SESSION["id"];
+//echo $id=$_SESSION["id"];
 	 
 //mandar query con la seleccion
 
-$query = "SELECT * FROM medio;";
+$query = "SELECT * FROM medio Limit $start, $porpagina;";
 
 $result = mysql_query($query) or die(mysql_error());
 
