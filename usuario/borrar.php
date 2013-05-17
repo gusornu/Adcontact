@@ -7,23 +7,41 @@ include ($nivel_dir.'includes/config.php');
 require_once($nivel_dir.'template/pop.php');
 /*
 *variables necesarias
-*include ($nivel_dir.'includes/existeconexion.php');
+*
 */
-
+include ($nivel_dir.'includes/existeconexion.php');
 /*
 * Se realiza la conexion a la Base de Datos para Eliminar a un Usuario de Datos en la tabla de Usuarios
 */
-if (isset($_GET["id_usu"]))
+
+if (isset($_GET["del"]))
 	{
-		$query1 = "SELECT * FROM usuario where id_usuario=".$_GET["id_usu"]."";
-		$result1 = mysql_query($query1) or die(mysql_error());
-		$row1 = mysql_fetch_array($result1);
-		$id_esc=$row1['id_usuario'];
+		
+		$query = "SELECT * FROM persona where id_usuario=".$_GET["del"]."";
+		$result = mysql_query($query) or die(mysql_error());
+		$row = mysql_fetch_array($result);
+		$n = mysql_num_rows($result);
 	
-	}
+	if ($n>=1 || $_GET["del"]==(isset($_SESSION['id'])))
+	{?>
+    	<div class="form clearfix">
+    <div class="form-header">
 
-?>
+	<h2>Este Usuario no se puede Borrar.  </h2>
 
+<form id="form" name="form" action="../includes/cerrar.php" method="post">
+	Ya exite un Contacto creado con ese Usuario		  
+		 <div class="button large"><input type="submit" value="cerrar"></div>
+	</form> 
+    </div>
+
+</div>
+    
+    <?php
+		
+	
+	}else {
+		?>
 
 <div class="form clearfix">
     <div class="form-header">
@@ -35,14 +53,14 @@ if (isset($_GET["id_usu"]))
 		 <div class="button large"><input type="submit" value="Borrar"></div>
 	</form> 
 	
-    
-    
-    
-
-
-
-
-       
     </div>
 
 </div>
+
+
+		<?php
+		
+		}
+	}
+
+?>

@@ -178,7 +178,7 @@ if(!mysql_num_rows($result) >= 1)
 
     <form id="new_project" name="miform" action="persona.php?borrado" method="post">
 
-    <h2> Realmente decea borrar?</h2>
+    <h2> Realmente desea borrar?</h2>
         <div class="clearfix">
             <input type="hidden" name="id" value="<?=$id_borrar?>">
 
@@ -197,7 +197,7 @@ if(!mysql_num_rows($result) >= 1)
 <?php } if(isset($_GET['editar'])){ ?> 
 <div class="form clearfix">
     <div class="form-header">
-        <h2 class="form-title">Editar Contacto Contacto</h2>
+        <h2 class="form-title">Editar Contacto</h2>
     </div>
 
 
@@ -240,7 +240,7 @@ if(!mysql_num_rows($result) >= 1)
                         </select>
         </div>
         <div>
-            <label>Telefono</label>
+            <label>Teléfono</label>
             <input type="text"  name="telefono" class="wide" placeholder="6424234567" value="<?=$tel_casa?> " required>
             <label>Celular</label>
             <input type="text" name="celular" class="wide" placeholder="6421234567" value="<?=$tel_celular?>" required>
@@ -451,10 +451,10 @@ while( $rowx=mysql_fetch_array($resultx) )
                         </select>
         </div>
         <div>
-            <label>Telefono</label>
-            <input type='tel' pattern='\d{10}' title='Numero de Telefono (Formato: 6429999999)' name="telefono" class="wide" placeholder="6424234567" required>
+            <label>Teléfono</label>
+            <input type='tel' pattern='\d{10}' title='Numero de Teléfono (Formato: 6429999999)' name="telefono" class="wide" placeholder="6424234567" required>
             <label>Celular</label>
-            <input type='tel' pattern='\d{10}' title='Numero de Telefono (Formato: 6429999999)' name="celular" class="wide" placeholder="6421234567" required>
+            <input type='tel' pattern='\d{10}' title='Numero de Teléfono (Formato: 6429999999)' name="celular" class="wide" placeholder="6421234567" required>
             <label>Email</label>
             <input type="email" name="email" class="wide" placeholder="exemplo@dominio.com " required>
             

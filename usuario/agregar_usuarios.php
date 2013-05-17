@@ -63,22 +63,22 @@ if (isset($_GET["id_usu"]))
     
 		  <div>
 		  <label for="Nombres">Nombre del Usuario</label>
-		  <input class="skinny" type="text" id="nombre" name="nombre"  value="<?php echo $nombre; ?>"  size="40">
+		  <input class="skinny" type="text" id="nombre" name="nombre"  value="<?php echo $nombre; ?>"  size="40" required="required">
 		  </div>
         
           <div>
 		  <label for="Apellido1">Apellido Paterno</label>
-		  <input class="skinny" type="text" id="apellido_pat" name="apellido_pat"  value="<?php echo $apellido1; ?>"  size="40">
+		  <input class="skinny" type="text" id="apellido_pat" name="apellido_pat"  value="<?php echo $apellido1; ?>"  size="40" required="required">
 		  </div>
           
           <div>
 		  <label for="Apellido2">Apellido Materno</label>
-		  <input class="skinny" type="text" id="apellido_mat" name="apellido_mat"  value="<?php echo $apellido2; ?>"  size="40">
+		  <input class="skinny" type="text" id="apellido_mat" name="apellido_mat"  value="<?php echo $apellido2; ?>"  size="40" required="required">
 		  </div>
           
           <div>
           <label for="estatu">Estatus</label>
-		  <select class="wide" name="estatus" id="estatus" >
+		  <select class="wide" name="estatus" id="estatus" required="required">
            <?php if ($row1['estatus']=="activo"){ ?>
            <option selected value="activo">Activo</option>
           <?php  } else if($row1['estatus']=="inactivo"){ ?>
@@ -91,22 +91,22 @@ if (isset($_GET["id_usu"]))
       
       <div>
 		  <label for="Usuario">Usuario</label>
-		  <input class="skinny" type="text" id="usuario" name="usuario"  value="<?php echo $usuario; ?>"  size="40">
+		  <input class="skinny" type="text" id="usuario" name="usuario"  value="<?php echo $usuario; ?>"  size="40" required="required">
 		  </div>
           
           <div>
 		  <label for="Contrasena">Contraseña</label>
-		  <input class="skinny" type="password" id="contrasena" name="contrasena"  value="<?php echo $contrasena; ?>"  size="40">
+		  <input class="skinny" type="password" id="contrasena" name="contrasena"  value="<?php echo $contrasena; ?>"  size="40" >
 		  </div>
           
           <div>
-		  <label for="Matricula">Matricula</label>
-		  <input class="skinny" type="text" id="matricula" name="matricula"  value="<?php echo $matricula; ?>"  size="40">
+		  <label for="Matricula">Matrícula</label>
+		  <input class="skinny" type="text" id="matricula" name="matricula"  value="<?php echo $matricula; ?>"  size="40" required="required">
 		  </div>
           
           <div>
           <label for="Type">Tipo</label>
-		  <select class="wide" name="tipo" id="tipo" >
+		  <select class="wide" name="tipo" id="tipo" required="required">
            <?php if ($row1['tipo']=="Administrador"){ ?>
            <option selected value="Administrador">Administrador</option>
           <?php  } else if($row1['tipo']=="Director"){ ?>
@@ -141,14 +141,14 @@ if (isset($_GET["id_usu"]))
  frmvalidator.EnableOnPageErrorDisplaySingleBox();
  frmvalidator.EnableMsgsTogether();
  
- frmvalidator.addValidation("Nombre","req","El nombre es requerido.");
-  frmvalidator.addValidation("Apellido1","req","El apellido paterno es requerido.");
-   frmvalidator.addValidation("Apellido2","req","El apellido materno es requerido.");
-    frmvalidator.addValidation("status","req","Elige el status del Usuario.");
-     frmvalidator.addValidation("Usuario","req","El nombre usuario es requerido.");
-      frmvalidator.addValidation("Contraseña","req","La contaseña del usurio es requerido.");
-       frmvalidator.addValidation("Matricula","req","la matricula del usurio es requerido.");
-	    frmvalidator.addValidation("Type","req","El tipo de usuario es requerido.");
+ frmvalidator.addValidation("Nombre","required","El nombre es requerido.");
+  frmvalidator.addValidation("Apellido1","required","El apellido paterno es requerido.");
+   frmvalidator.addValidation("Apellido2","required","El apellido materno es requerido.");
+    frmvalidator.addValidation("status","required","Elige el status del Usuario.");
+     frmvalidator.addValidation("Usuario","required","El nombre usuario es requerido.");
+      frmvalidator.addValidation("Contraseña","required","La contaseña del usurio es requerido.");
+       frmvalidator.addValidation("Matricula","required","la matricula del usurio es requerido.");
+	    frmvalidator.addValidation("Type","required","El tipo de usuario es requerido.");
    
    
 

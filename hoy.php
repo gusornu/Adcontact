@@ -61,8 +61,15 @@ include($nivel_dir.'template/top.php'); ?>
 <?PHP
 //mandar query con la seleccion
 //echo "SELECT * FROM persona ORDER BY $orden;";
+$table="seguimiento"; // nombre de la tabla que usamos
+$porpagina="4"; //numero por pagina
+$pnombre="hoy"; //nombre de la pagina que estamos usando
+$masquery="WHERE fecha_seguimiento =CURDATE()";
+include($nivel_dir.'includes/pagination.php'); //cargar paginacion
 
-$query = "SELECT * FROM seguimiento WHERE   fecha_seguimiento =CURDATE() ORDER BY $orden;";
+
+
+$query = "SELECT * FROM seguimiento WHERE fecha_seguimiento =CURDATE() ORDER BY $orden Limit $start, $porpagina;";
 //echo $query;
 $result = mysql_query($query) or die(mysql_error());
 

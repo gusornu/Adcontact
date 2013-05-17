@@ -1,5 +1,7 @@
 <head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+   <meta charset="utf-8"/>
+   <!-- <meta http-equiv="Content-type" content="text/html;charset=UTF-8"> -->
+
     <link href="<?php echo $nivel_dir; ?>template/css/basic.css" media="screen" rel="stylesheet" type="text/css"/>
     <link href="<?php echo $nivel_dir; ?>template/css/style.css" media="screen" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="js/jquery.min_1_4_1_goo.js"></script>
