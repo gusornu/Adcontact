@@ -8,6 +8,7 @@ $pagetit="Pagina de companeros";
 
 require ($nivel_dir.'includes/config.php');
 require ($nivel_dir.'includes/existeconexion.php');
+require ($nivel_dir.'includes/existeconexion2.php');
 //variables necesarias
 if(!isset($_GET['page'])){
 

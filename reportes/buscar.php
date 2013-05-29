@@ -14,8 +14,8 @@ mysql_select_db($dbname) or die('Cannot select database');
         type="text/javascript"></script>
 <?php
 
-require ($nivel_dir.'includes/existeconexion.php');
-require ($nivel_dir.'includes/existeconexion2.php');
+//require ($nivel_dir.'includes/existeconexion.php');
+//require ($nivel_dir.'includes/existeconexion2.php');
 
 
 //titulo
