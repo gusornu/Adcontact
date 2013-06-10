@@ -40,10 +40,12 @@ if (isset($_GET["id_med"]))
    <tr>
         <td>SEGUIMIENTOS  POR CADA MEDIO EN UN PERIODO</tr>
    <?php  
-$fecha1="2013-02-01";
-$fecha2="2013-05-25";
+   echo $_GET["fecha1"];
+   echo $_GET["fecha2"];
+$fecha11= $_GET["fecha1"];
+$fecha22= $_GET["fecha2"];
 
- $qdp=mysql_query("SELECT nombre as medio, count(*) as seguimientos FROM medio, seguimiento where medio.id_medio=seguimiento.id_medio AND fecha BETWEEN '$fecha1' AND '$fecha2' group by nombre;");?>
+ $qdp=mysql_query("SELECT nombre as medio, count(*) as seguimientos FROM medio, seguimiento where medio.id_medio=seguimiento.id_medio AND fecha BETWEEN '$fecha11' AND '$fecha22' group by nombre;");?>
 <script src="../template/amcharts/amcharts.js" type="text/javascript"></script>         
         <script type="text/javascript">
             var chart;

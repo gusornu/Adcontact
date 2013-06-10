@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.php" server="192.168.1.88//var/www/html/promocion/" local="130124214430000000" remote="130124214430000000" Dst="0" />
-<file name="persona2.php" server="192.168.1.88//var/www/html/promocion/" local="130124214440000000" remote="130124214440000000" Dst="0" />
-<file name="persona.php" server="192.168.1.88//var/www/html/promocion/" local="130132895440000000" remote="130132895440000000" Dst="0" />
-<file name="editar.php" server="192.168.1.88//var/www/html/promocion/" local="130124214430000000" remote="130124214430000000" Dst="0" />
-<file name="edit.php" server="192.168.1.88//var/www/html/promocion/" local="130124214420000000" remote="130124214420000000" Dst="0" />
-<file name="reporte_emails.php" server="192.168.1.88//var/www/html/promocion/" local="130132921080000000" remote="130132921080000000" Dst="0" />
-<file name="delete.php" server="192.168.1.88//var/www/html/promocion/" local="130124214420000000" remote="130124214420000000" Dst="0" />
-<file name="nuevo.php" server="192.168.1.88//var/www/html/promocion/" local="130124214430000000" remote="130124214430000000" Dst="0" />
-<file name="seg.php" server="192.168.1.88//var/www/html/promocion/" local="130124214440000000" remote="130124214440000000" Dst="0" />
+<file name="persona2.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="seg.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="edit.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="reporte_emails.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="editar.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="delete.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="index.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="nuevo.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="persona.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
 </dwsync>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="jquery.fancybox-media.js" server="192.168.1.88//var/www/html/promocion/" local="130082896630000000" remote="130082896630000000" Dst="0" />
-<file name="fancybox_buttons.png" server="192.168.1.88//var/www/html/promocion/" local="130082896610000000" remote="130082896610000000" Dst="0" />
-<file name="jquery.fancybox-thumbs.js" server="192.168.1.88//var/www/html/promocion/" local="130082896640000000" remote="130082896640000000" Dst="0" />
-<file name="jquery.fancybox-thumbs.css" server="192.168.1.88//var/www/html/promocion/" local="130082896640000000" remote="130082896640000000" Dst="0" />
-<file name="jquery.fancybox-buttons.css" server="192.168.1.88//var/www/html/promocion/" local="130082896610000000" remote="130082896610000000" Dst="0" />
-<file name="jquery.fancybox-buttons.js" server="192.168.1.88//var/www/html/promocion/" local="130082896610000000" remote="130082896610000000" Dst="0" />
+<file name="jquery.fancybox-thumbs.js" server="192.168.1.1//var/www/html/prom/" local="130143455860000000" remote="130143455860000000" Dst="0" />
+<file name="jquery.fancybox-thumbs.css" server="192.168.1.1//var/www/html/prom/" local="130143455860000000" remote="130143455860000000" Dst="0" />
+<file name="jquery.fancybox-buttons.css" server="192.168.1.1//var/www/html/prom/" local="130143455860000000" remote="130143455860000000" Dst="0" />
+<file name="jquery.fancybox-buttons.js" server="192.168.1.1//var/www/html/prom/" local="130143455860000000" remote="130143455860000000" Dst="0" />
+<file name="fancybox_buttons.png" server="192.168.1.1//var/www/html/prom/" local="130143455860000000" remote="130143455860000000" Dst="0" />
+<file name="jquery.fancybox-media.js" server="192.168.1.1//var/www/html/prom/" local="130143455860000000" remote="130143455860000000" Dst="0" />
 </dwsync>

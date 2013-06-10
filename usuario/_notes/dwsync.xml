@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="lista.php" server="192.168.1.88//var/www/html/promocion/" local="130132743830000000" remote="130132743830000000" Dst="0" />
-<file name="inserta_usuario.php" server="192.168.1.88//var/www/html/promocion/" local="130132899320000000" remote="130132899320000000" Dst="0" />
-<file name="verifica_contra.php" server="192.168.1.88//var/www/html/promocion/" local="130130448620000000" remote="130130448620000000" Dst="0" />
-<file name="borrar.php" server="192.168.1.88//var/www/html/promocion/" local="130132911470000000" remote="130132911470000000" Dst="0" />
-<file name="agregar_usuarios.php" server="192.168.1.88//var/www/html/promocion/" local="130132743330000000" remote="130132743330000000" Dst="0" />
-<file name="cambiar_contra.php" server="192.168.1.88//var/www/html/promocion/" local="130130433900000000" remote="130130433900000000" Dst="0" />
+<file name="borrar.php" server="192.168.1.1//var/www/html/prom/" local="130143455880000000" remote="130143455880000000" Dst="0" />
+<file name="inserta_usuario.php" server="192.168.1.1//var/www/html/prom/" local="130143455880000000" remote="130143455880000000" Dst="0" />
+<file name="agregar_usuarios.php" server="192.168.1.1//var/www/html/prom/" local="130143455880000000" remote="130143455880000000" Dst="0" />
+<file name="verifica_contra.php" server="192.168.1.1//var/www/html/prom/" local="130143455880000000" remote="130143455880000000" Dst="0" />
+<file name="cambiar_contra.php" server="192.168.1.1//var/www/html/prom/" local="130143455880000000" remote="130143455880000000" Dst="0" />
+<file name="lista.php" server="192.168.1.1//var/www/html/prom/" local="130143455880000000" remote="130143455880000000" Dst="0" />
 </dwsync>

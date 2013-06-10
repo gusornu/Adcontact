@@ -1,7 +1,7 @@
 <?php
 $dbhost='localhost';
-$dbusername='root';
-$dbuserpass='unav21';
+$dbusername='test';
+$dbuserpass='test@unav';
 $dbname = 'promocion';
 
 $con=mysql_connect($dbhost,$dbusername,$dbuserpass);

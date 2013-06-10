@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="hoy.php" server="192.168.1.88//var/www/html/promocion/" local="130135417440000000" remote="130135417440000000" Dst="0" />
-<file name="validar_usuario.php" server="192.168.1.88//var/www/html/promocion/" local="130125020170000000" remote="130125020170000000" Dst="0" />
-<file name="index.php" server="192.168.1.88//var/www/html/promocion/" local="130105185630000000" remote="130105185630000000" Dst="0" />
-<file name="contacto.php" server="192.168.1.88//var/www/html/promocion/" local="130130309590000000" remote="130130309590000000" Dst="0" />
+<file name=".bash_history" server="192.168.1.1//var/www/html/prom/" local="130143571820000000" remote="130143571820000000" Dst="0" />
+<file name=".mysql_history" server="192.168.1.1//var/www/html/prom/" local="130143571820000000" remote="130143571820000000" Dst="0" />
+<file name="contacto.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="hoy.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="index.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="promocion.sql" server="192.168.1.1//var/www/html/prom/" local="130143459500000000" remote="130143459500000000" Dst="0" />
+<file name="validar_usuario.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
 </dwsync>

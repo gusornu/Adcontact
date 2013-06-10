@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="fancybox_loading.gif" server="192.168.1.88//var/www/html/promocion/" local="130094213280000000" remote="130094213280000000" Dst="0" />
-<file name="jquery.fancybox.css" server="192.168.1.88//var/www/html/promocion/" local="130094213280000000" remote="130094213280000000" Dst="0" />
-<file name="jquery.fancybox.js" server="192.168.1.88//var/www/html/promocion/" local="130094213280000000" remote="130094213280000000" Dst="0" />
-<file name="blank.gif" server="192.168.1.88//var/www/html/promocion/" local="130094213280000000" remote="130094213280000000" Dst="0" />
-<file name="jquery.fancybox.pack.js" server="192.168.1.88//var/www/html/promocion/" local="130094213280000000" remote="130094213280000000" Dst="0" />
-<file name="fancybox_sprite.png" server="192.168.1.88//var/www/html/promocion/" local="130094213280000000" remote="130094213280000000" Dst="0" />
+<file name="jquery.fancybox.pack.js" server="192.168.1.1//var/www/html/prom/" local="130143455840000000" remote="130143455840000000" Dst="0" />
+<file name="jquery.fancybox.css" server="192.168.1.1//var/www/html/prom/" local="130143455840000000" remote="130143455840000000" Dst="0" />
+<file name="blank.gif" server="192.168.1.1//var/www/html/prom/" local="130143455840000000" remote="130143455840000000" Dst="0" />
+<file name="fancybox_loading.gif" server="192.168.1.1//var/www/html/prom/" local="130143455840000000" remote="130143455840000000" Dst="0" />
+<file name="fancybox_sprite.png" server="192.168.1.1//var/www/html/prom/" local="130143455840000000" remote="130143455840000000" Dst="0" />
+<file name="jquery.fancybox.js" server="192.168.1.1//var/www/html/prom/" local="130143455840000000" remote="130143455840000000" Dst="0" />
 </dwsync>

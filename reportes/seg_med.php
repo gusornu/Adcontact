@@ -159,8 +159,8 @@ function cambia(){
 
  
 
- <form action="buscar.php"  method=Post name=formu id="formu">
-   <table>
+
+<table>
    <tr>
         <td colspan="5">SEGUIMIENTOS  POR CADA MEDIO EN UN PERIODO</tr>
    <?php  
@@ -286,13 +286,14 @@ echo ",";
       <tr>
         <td colspan="5"><a href="seg_med.php">SEGUIMIENTOS  POR CADA MEDIO EN UN PERIODO              </a>        
      </tr> 
-      <tr>
+      <form action="buscar.php" method="get" name=formu id="formu"> <tr>
         <td width="112">Fecha Inicial:      
         <td width="150">
-        <input type="date" name="fecha_ini" id="fecha_ini" >                
+        <input type="date" name="fecha_ini" id="fecha_ini"  >                
         <td width="78">Fecha Final        
-        <td width="155"><input type="date" name="fecha_fin" id="fecha_fin" >        
-        <td width="38">        
+        <td width="155">
+        <input type="date" name="fecha_ini" id="fecha_fin" >        
+        <td width="38">        	
      </tr>
       <tr>
 <SCRIPT language=JavaScript>													  
@@ -303,16 +304,22 @@ document.formu.action="quinta_secc.php?evaluacion=<?php echo $IDC; ?>"
 document.formu.submit();
 
 }
+
+function Validar(id){ 	
+	 document.formu.action="inserta_solicitud.php?v";
+	 document.formu.submit();
+	
+}
 </script>
 
         <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>Reporte
         </span></a>
-        <a  id="link" onclick="Categoria(document.getElementById('fecha_ini').value,document.getElementById('fecha_fin').value)" href="rep_seg_med.php" > <span>Reporte2</span></a>
+        <a onclick="this.href='rep_seg_med.php?fecha1='+document.getElementsByName('fecha_ini')[0].value+'&fecha2='+document.getElementsByName('fecha_ini')[1].value;" > <span>Reporte2</span></a>
        </td>     
      </tr>
-      <tr>
+      <tr></form>
         <td colspan="5">      
      </tr>
    </table>
- </form>
+ 
 <?php } ?>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.php" server="192.168.1.88//var/www/html/promocion/" local="130105390890000000" remote="130105390890000000" Dst="0" />
-<file name="pagination.php" server="192.168.1.88//var/www/html/promocion/" local="130131093080000000" remote="130131093080000000" Dst="0" />
-<file name="existeconexion2.php" server="192.168.1.88//var/www/html/promocion/" local="130100808180000000" remote="130100808180000000" Dst="0" />
-<file name="cerrarsesion.php" server="192.168.1.88//var/www/html/promocion/" local="130078437090000000" remote="130078437090000000" Dst="0" />
-<file name="cerrar.php" server="192.168.1.88//var/www/html/promocion/" local="130132899320000000" remote="130132899320000000" Dst="0" />
-<file name="config.php" server="192.168.1.88//var/www/html/promocion/" local="130112920460000000" remote="130112920460000000" Dst="0" />
-<file name="existeconexion.php" server="192.168.1.88//var/www/html/promocion/" local="130100249040000000" remote="130100249040000000" Dst="0" />
-<file name="promocion.sql.zip" server="192.168.1.88//var/www/html/promocion/" local="130126823490000000" remote="130126823490000000" Dst="0" />
-<file name="promocionND.sql.zip" server="192.168.1.88//var/www/html/promocion/" local="130126824120000000" remote="130126824120000000" Dst="0" />
+<file name="promocion.sql.zip" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="pagination.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="cerrar.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="cerrarsesion.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="existeconexion2.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="index.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="config.php" server="192.168.1.1//var/www/html/prom/" local="130144349560000000" remote="130144349560000000" Dst="0" />
+<file name="existeconexion.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="promocionND.sql.zip" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
 </dwsync>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="index.php" server="192.168.1.88//var/www/html/promocion/" local="130105391020000000" remote="130105391020000000" Dst="0" />
-<file name="persona2.php" server="192.168.1.88//var/www/html/promocion/" local="130106060790000000" remote="130106060790000000" Dst="0" />
-<file name="persona.php" server="192.168.1.88//var/www/html/promocion/" local="130124203090000000" remote="130124203090000000" Dst="0" />
-<file name="delete.php" server="192.168.1.88//var/www/html/promocion/" local="130096585420000000" remote="130096585420000000" Dst="0" />
-<file name="seg.php" server="192.168.1.88//var/www/html/promocion/" local="130124197490000000" remote="130124197490000000" Dst="0" />
+<file name="persona2.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="seg.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="delete.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="index.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
+<file name="persona.php" server="192.168.1.1//var/www/html/prom/" local="130143455800000000" remote="130143455800000000" Dst="0" />
 </dwsync>

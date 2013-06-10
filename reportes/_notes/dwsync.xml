@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="buscar.php" server="192.168.1.88//var/www/html/promocion/" local="130137156400000000" remote="130137156400000000" Dst="0" />
-<file name="seg_med.php" server="192.168.1.88//var/www/html/promocion/" local="130143299050000000" remote="130143299050000000" Dst="0" />
-<file name="esc_per.php" server="192.168.1.88//var/www/html/promocion/" local="130141691560000000" remote="130141691560000000" Dst="0" />
-<file name="index.php" server="192.168.1.88//var/www/html/promocion/" local="130105389970000000" remote="130105389970000000" Dst="0" />
-<file name="rep_seg_med.php" server="192.168.1.88//var/www/html/promocion/" local="130141707520000000" remote="130141707520000000" Dst="0" />
-<file name="rep_llam_dia.php" server="192.168.1.88//var/www/html/promocion/" local="130141646150000000" remote="130141646150000000" Dst="0" />
-<file name="rep_estatus.php" server="192.168.1.88//var/www/html/promocion/" local="130106855140000000" remote="130106855140000000" Dst="0" />
-<file name="med_per.php" server="192.168.1.88//var/www/html/promocion/" local="130141690490000000" remote="130141690490000000" Dst="0" />
+<file name="rep_estatus.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="buscar.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="esc_per.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="rep_seg_med.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="seg_med.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="med_per.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="rep_llam_dia.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
+<file name="index.php" server="192.168.1.1//var/www/html/prom/" local="130143455810000000" remote="130143455810000000" Dst="0" />
 </dwsync>
