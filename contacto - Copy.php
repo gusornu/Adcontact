@@ -1,16 +1,19 @@
-<?php $nivel_dir="../"; 
+<?php $nivel_dir=""; 
 $tit="Companeros";
 
 //titulo de pagina
 $pagetit="Pagina de companeros";
+
 
 //obtener configuracion de la base de datos
 
 require ($nivel_dir.'includes/config.php');
 require ($nivel_dir.'includes/existeconexion.php');
 //variables necesarias
-if(!isset($_GET['page'])){
 
+//// inicion de paginacion
+if(!isset($_GET['page'])){
+//echo $_SESSION["usuario"];
 $page = 1;
 
 }else{
@@ -18,6 +21,8 @@ $page = 1;
 // If page is set, let's get it
 $page = $_GET['page'];
 }
+///  fin de paginacion
+
 
 if(!isset($_GET['orden'])){
 $orden = "id";
@@ -60,63 +65,55 @@ include($nivel_dir.'template/top.php'); ?>
                 parent.location.reload(true);}
 	});
 });
-
-
    </script>
 
 
 <!-- Fin del bloque de formulario   -->
-<form action="rep_estatus.php" method="post">
-<table width="182" border="1">
-  <tr>
-    <td width="43"></td>
-    <td width="123">
-    <label>Estatus</label>
-    <select name="estatus" class="wide"  onChange="this.form.submit();" >
-         
-<?php 
-$resultx=mysql_query("SELECT * FROM estatus ;");
-    $i=0;
-while( $rowx=mysql_fetch_array($resultx) )
-    {
-    $newidx=$rowx['id_estatus'];
-    $newnamex=$rowx['nombre'];
-	if ($_POST["estatus"]==$newidx)
-	{
-		echo "<option  value=0 selected>".$newnamex."</option>";
-		} else {
-		echo "<option value='".$newidx."' >". htmlspecialchars($newnamex) ."</option>";
-				}
-	     $i++;
-    }
-    
-    ?>
-                        </select></td>
-    </tr>
-  <tr>
-    <td height="25">&nbsp;</td>
-    <td>&nbsp;</td>
-    </tr>
-</table></form>
-
 
 <?PHP
+//pagination//
+$table="persona"; // nombre de la tabla que usamos
+$porpagina="4"; //numero por pagina
+include($nivel_dir.'includes/pagination.php'); //cargar paginacion
+$pnombre="contacto"; //nombre de la pagina que estamos usando
+
+
 //mandar query con la seleccion
 //echo "SELECT * FROM persona ORDER BY $orden;";
-
-if(isset($_POST["estatus"])){ $statu="and persona.estatus=".$_POST["estatus"]."";} else { $statu="";}
-
-$query = "SELECT * from persona, estatus where persona.estatus=estatus.id_estatus $statu ORDER BY $orden;";
+$query = "SELECT * FROM persona ORDER BY $orden Limit $start, $porpagina ;";
 
 $result = mysql_query($query) or die(mysql_error());
 
 //Contar el numero de filas.
 $count = mysql_num_rows($result);
 
+if(isset($_SESSION["usuario"]) && $_SESSION["usuario"]!=0){
+?>
 
+<div class="error_list clearfix">
+<div class="error">
 
-
+<?php
 //Table header
+
+if($_SESSION["usuario"]==1){ 
+
+	 $alerta="El contacto a sido insertado";}
+else if($_SESSION["usuario"]==2){
+
+	 $alerta="Sus cambios an sido guardados.";}
+else if($_SESSION["usuario"]==3){ 
+
+	 $alerta="El contacto a sido borrado.";}
+$_SESSION["usuario"]=0;
+
+echo $alerta;
+//echo $_SESSION["usuario"];
+?>
+
+</div>    </div>
+<?php
+}
 echo "<table class=\"list\">\n";
 echo "<tr class=\"table-header\">\n";
 echo "<th class=\"\"><a href=\"contacto.php?page=".$page."&orden=apellido_pat\">Nombre</a></th>\n";
@@ -145,9 +142,17 @@ $id_escuela=htmlentities($row['id_escuela']);
 				echo "<tr>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $apellido_pat ." ". $nombre." ". $apellido_mat."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $tel_casa."</a></td>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $estatus."</a></td>";
+				$quere = "SELECT * FROM estatus WHERE id_estatus=$estatus";
+				$resulte = mysql_query($quere) or die(mysql_error());
+				$estata = mysql_fetch_array($resulte);
+				$estatuz = $estata['abrev'];
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $estatuz."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $mail."</a></td>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $id_escuela."</a></td>";
+				$queri = "SELECT * FROM escuela WHERE id_escuela=$id_escuela";
+				$resultz = mysql_query($queri) or die(mysql_error());
+				$escuela = mysql_fetch_array($resultz);
+				$ABR = $escuela['abrev'];
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $ABR ."</a></td>";
 
 				//echo "	<input type=\"image\" src=\"images/update.png\" alt=\"Update Row\" class=\"update\" title=\"Update Row\">\n";
 				echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"personas/persona.php?editar&id=".$id."\"><span>Editar</span></a></td>";
@@ -162,8 +167,8 @@ $id_escuela=htmlentities($row['id_escuela']);
 				$idz=$row['id_persona'];
 				$fechaz=htmlentities($row['fecha_seguimiento']);
 				$descz=htmlentities($row['observacion']);
-				
-				echo "<li><a  class=\"modalbox modal\" href=\"personas/seg.php?editar&id=".$id."\">Seguimiento pendiente fecha: ".$fechaz." descripcion: ". $descz." </a></li>";
+				$ids=$row['id_seguimiento'];			
+				echo "<li><a  class=\"modalbox modal\" href=\"personas/seg.php?editar&id=".$ids."\">Seguimiento pendiente fecha: ".$fechaz." descripcion: ". $descz." </a></li>";
 				}
 				echo "</ul></td>";
 				//echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"personas/seg.php?editar&id=".$id."\"><span>Editar</span></a></td>";

@@ -21,7 +21,6 @@
  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script> 
   <script type="text/javascript" src="<?php echo $nivel_dir; ?>template/code/fancybox/jquery.fancybox.js?v=2.0.6"></script>
     
-    
 
  
     <title><?php echo $pagetit;?></title>

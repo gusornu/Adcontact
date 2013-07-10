@@ -6,30 +6,36 @@ $nivel_dir="../";
 include ($nivel_dir.'includes/config.php');
 //variables necesarias
 //include ($nivel_dir.'includes/existeconexion.php');
-require_once($nivel_dir.'template/pop.php');
+require_once($nivel_dir.'template/pop2.php');
 
-if (isset($_GET["id_med"]))
-	{
-		$query1 = "SELECT * FROM medio where id_medio=".$_GET["id_med"]."";
-		$result1 = mysql_query($query1) or die(mysql_error());
-		$row1 = mysql_fetch_array($result1);
-		$id_med=$row1['id_medio'];
-		$nombre=$row1['nombre'];
-		$estatus=$row1['estatus'];
-		$comentario=$row1['comentario'];
-	
-	} else {
-		$id_med="";
-		$nombre="";
-		$estatus="";
-		$comentario="";
-		}
+
+   //echo $_GET["rep"];
+   //echo $_GET["fecha1"];
+   //echo $_GET["fecha2"];
+$fecha1= $_GET["fecha1"];
+$fecha2= $_GET["fecha2"];
+
+if ($_GET["rep"]=="rsm"){
+ $qdp=mysql_query("SELECT nombre as medio, count(*) as seguimientos FROM medio, seguimiento where medio.id_medio=seguimiento.id_medio AND seguimiento.fecha BETWEEN '$fecha1' AND '$fecha2' group by medio;");
+ $nom_rep="SEGUIMIENTOS  P/C MEDIO";
+}else if ($_GET["rep"]=="mp") {
+ $qdp=mysql_query("SELECT medio.nombre as medio, count(*) as medios FROM persona, medio where persona.`id_medio`=medio.id_medio and persona.fecha BETWEEN '$fecha1' AND '$fecha2' group by medio;");
+ $nom_rep="CONTACTOS P/C MEDIO";
+} else if ($_GET["rep"]=="ep"){
+ $qdp=mysql_query("SELECT escuela.nombre as escuela, count(*) as personas FROM persona, escuela where persona.`id_escuela`=escuela.id_escuela and persona.fecha BETWEEN '$fecha1' AND '$fecha2' group by escuela;") ;
+ $nom_rep="CONTACTOS POR ESCUELA";
+} else if ($_GET["rep"]=="est"){
+ $qdp=mysql_query("SELECT estados.`estado`, count(*) as personas FROM persona, estados where persona.`id_estado`=estados.`id_estado` and persona.fecha BETWEEN '$fecha1' AND '$fecha2' group by estado;") ;
+ $nom_rep="CONTACTOS POR ESTADO";
+}
+
+
 
 ?>
 
 <div class="form clearfix">
     <div class="form-header">
-        <h2 class="form-title">Medios</h2>
+        <h2 class="form-title"><?php echo $nom_rep;?> </h2>
     </div>
     
      <div class="error_list clearfix">
@@ -38,21 +44,27 @@ if (isset($_GET["id_med"]))
     
     <table>
    <tr>
-        <td>SEGUIMIENTOS  POR CADA MEDIO EN UN PERIODO</tr>
-   <?php  
-   echo $_GET["fecha1"];
-   echo $_GET["fecha2"];
-$fecha11= $_GET["fecha1"];
-$fecha22= $_GET["fecha2"];
+        <td>PERIODO: <?php echo $fecha1;?> - <?php echo $fecha2;?></tr>
 
- $qdp=mysql_query("SELECT nombre as medio, count(*) as seguimientos FROM medio, seguimiento where medio.id_medio=seguimiento.id_medio AND fecha BETWEEN '$fecha11' AND '$fecha22' group by nombre;");?>
 <script src="../template/amcharts/amcharts.js" type="text/javascript"></script>         
         <script type="text/javascript">
             var chart;
             var legend;
 var chartData= [<?php while( $rdp=mysql_fetch_array($qdp) )
     {
-    echo "{ country:\"".$nombre_medio=$rdp['medio']."\", litres:".$nombre_medio=$rdp['seguimientos']."}";
+		
+		
+if ($_GET["rep"]=="rsm")
+{
+ echo "{ country:\"".$rdp['medio']."\", litres:".$rdp['seguimientos']."}";
+}else if ($_GET["rep"]=="mp") {
+ echo "{ country:\"".$rdp['medio']."\", litres:".$rdp['medios']."}";
+} else if ($_GET["rep"]=="ep"){
+  echo "{ country:\"".$rdp['escuela']."\", litres:".$rdp['personas']."}";
+}else if ($_GET["rep"]=="est"){
+  echo "{ country:\"".$rdp['estado']."\", litres:".$rdp['personas']."}";
+}
+   
            // $i++;
 echo ",";
     } ?>];
@@ -117,64 +129,17 @@ echo ",";
         <table align="center" cellspacing="20">
             <tr>
                 <td>
-                    <input type="radio" checked="true" name="group" id="rb1" onclick="setLabelPosition()">labels outside
-                    <input type="radio" name="group" id="rb2" onclick="setLabelPosition()">labels inside</td>
+                    <input type="radio" checked="true" name="group" id="rb1" onclick="setLabelPosition()">Etiqueta Exterior
+                    <input type="radio" name="group" id="rb2" onclick="setLabelPosition()"> / Interior</td>
                 <td>
                     <input type="radio" name="group2" id="rb3" onclick="set3D()">3D
                     <input type="radio" checked="true" name="group2" id="rb4" onclick="set3D()">2D</td>
-                <td>Legend switch type:
-                    <input type="radio" checked="true" name="group3" id="rb5"
-                    onclick="setSwitch()">x
-                    <input type="radio" name="group3" id="rb6" onclick="setSwitch()">v</td>
+                <td></td>
             </tr>
         </table>
      </tr>
    </table>
 
-
-	<form id="new_project" name="myform" action="inserta_med.php?id_escue111=<?php echo $_GET["id_med"];?>" method="post">
-    
-		<div>
-		  <label for="Nombres">Nombre del Medio de contacto</label>
-		  
-          
-		  <input class="skinny" type="text" id="Nombre" name="Nombre"  value="<?php echo $nombre; ?>"  size="40" required="required">
-		  </div>
-        
-          <div>
-		  <label for="Comentarios">Comentario</label>
-		 
-		  <input class="skinny" type="text" size="40"	   id="Comentario" name="Comentario" value="<?php echo $comentario ?>"  required="required">
-          </div>
-          <div>
-          <label for="estatu">Estatus</label >
-		  
-        
-		  <select class="wide" name="estatus" id="estatus" required="required" >
-           <?php if ($row1['estatus']=="activo"){ ?>
-           <option selected value="activo">Activo</option>
-          <?php  } else if($row1['estatus']=="inactivo"){ ?>
-          <option selected value="inactivo">Inactivo</option>
-           <?php }?>
-           
-            <option  value="activo">Activo</option>
-            <option  value="inactivo">Inactivo</option>
-          </select>
-      </div>
-        
-        <?php if (isset($_GET["id_med"])){ ?>
-		  <input name="id_medi" type="hidden"  id="id_medi"  value="<?php echo $_GET["id_med"]; ?>" >
-        <?php  } else{ ?>
-         <input name="insert" type="hidden"  id="insert"  value=1 >
-        <?php }?>
-        
-          		  
-		  <br>
-		  
-		 
-		  
-	 
-		<div class="button large"><input type="submit" id="send" ></div>
   </form> 
 
    

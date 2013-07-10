@@ -1,8 +1,8 @@
 <?php $nivel_dir=""; 
-$tit="Companeros";
+$tit="Contactos";
 
 //titulo de pagina
-$pagetit="Pagina de companeros";
+$pagetit="Administrador de contactos";
 
 
 //obtener configuracion de la base de datos
@@ -78,9 +78,54 @@ include($nivel_dir.'includes/pagination.php'); //cargar paginacion
 $pnombre="contacto"; //nombre de la pagina que estamos usando
 
 
+////// verificACION DE BUSQUEDAS
+
+if(isset($_POST["submit"])){
+
+	// Recibimos la variable buscar del formulario de búsqueda desde el método POST
+	
+	
+	foreach($_POST as $nombre_campo => $valor)
+{
+if($valor=='')
+$counter++;
+}
+if($counter<=7 ){ $and="and";} else{ $and="";}
+
+	if($_POST["nombre"]!=""){
+	$buscar="$and nombre LIKE '%".$_POST["nombre"]."%'";
+	}else { $buscar="";}
+	
+	if($_POST["sexo"]!=""){
+	$sexob="$and sexo='".$_POST["sexo"]."'";
+	}else {	$sexob="";	}
+	
+	if($_POST["fecha"]!=""){
+    $fech="$and DATE_FORMAT(persona.fecha, '%Y-%m-%d')='".$_POST["fecha"]."'";
+	} else { $fech=""; }
+	
+		if($_POST["mail"]!=""){
+	$mail1="$and mail LIKE '%".$_POST["mail"]."%'";
+	}else {	$mail1="";	}
+	
+		if($_POST["tel_casa"]!=""){
+	$tel="$and tel_casa LIKE '%".$_POST["tel_casa"]."%'";
+	}else {	$tel="";	}
+	
+	if($_POST["estado"]!=""){
+	$est="$and id_estado ='".$_POST["estado"]."'";
+	}else {	$est="";	}
+	
+	if($_POST["escuela"]!=""){
+	$esc="$and id_escuela ='".$_POST["escuela"]."'";
+	}else {	$esc="";	}
+}
+
+
+$query ="SELECT * FROM persona where id>0 $buscar $sexob $fech $mail1 $tel $est $esc ORDER BY $orden Limit $start, $porpagina ;";
 //mandar query con la seleccion
 //echo "SELECT * FROM persona ORDER BY $orden;";
-$query = "SELECT * FROM persona ORDER BY $orden Limit $start, $porpagina ;";
+//$query = "SELECT * FROM persona ORDER BY $orden Limit $start, $porpagina ;";
 
 $result = mysql_query($query) or die(mysql_error());
 
@@ -111,9 +156,78 @@ echo $alerta;
 //echo $_SESSION["usuario"];
 ?>
 
-</div>    </div>
+</div> 
+      </div>
 <?php
 }
+?>
+<form method="post" name="busca" id="busca" action="">
+ <table>
+	  <tr>
+	    <td><div><label>Nombre o Apellido</label><input name='nombre'  type='text' maxlength='20'></div></td>
+	    <td><div><label>Sexo</label><select name='sexo' style="width: 210px;">
+        							<option value=''>Elige una Opción</option>
+									<option value='1'>Masculino</option>
+									<option value='2'>Femenino</option>
+	    </select></div></td>
+        <td><div><label>Fecha</label><input type='date'  name='fecha' maxlength='20' style="width: 210px;"></div></td>
+	    <td><div><label>Correo</label><input name='mail'  type='mail' maxlength='20'></div></td>
+	    </tr>
+       <tr>
+	    <td><div><label>Telefono</label><input name='tel_casa'  type='text' maxlength='20'></div></td>
+	    <td><div>
+     
+            <label>Estado</label>
+            <select name="estado" id="estado" style="width: 210px;">
+      <option value=''>Seleccione</option>
+	  <?php
+	 
+	 $query="select * from cat_estados";
+ $qmune=mysql_query($query);
+ $count = mysql_num_rows($qmune);
+    while($Rs=mysql_fetch_array($qmune)) {
+    	if($estado==$Rs['id_estado'])
+		 	{$sel="selected";}
+		 else
+			{$sel="";}
+		echo "<option value='".$Rs['id_estado']."' ".$sel.">". htmlspecialchars($Rs['estado']) ."</option>"; 
+      }
+    ?>
+    </select>
+        </div></td>
+	    <td><div><label>Estatus</label><select name='estatus' style="width: 210px;">
+        							<option value=''>Elige una Opción</option>
+									<option value='1'>Abierto</option>
+									<option value='2'>Cerrado</option>
+	    </select></div></td>
+	    <td><div><label>Escuela</label>
+	      <select name="escuela" id="escuela" style="width: 210px;" >
+	        <option value=''>Seleccione</option>
+	        <?php
+	 
+	 $query="select * from escuela";
+ $qmune=mysql_query($query);
+ $count = mysql_num_rows($qmune);
+    while($Rs=mysql_fetch_array($qmune)) {
+    	if($escuela==$Rs['id_escuela'])
+		 	{$sel="selected";}
+		 else
+			{$sel="";}
+		echo "<option value='".$Rs['id_escuela']."' ".$sel.">". htmlspecialchars($Rs['nombre']) ."</option>"; 
+      }
+    ?>
+          </select>
+	    </div></td>
+	   </tr>
+	  <tr>
+	    <td height="47"><br><div><input name='submit' type='submit' value='Buscar'></div></td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	    <td>&nbsp;</td>
+	  </tr>
+	</table>
+</form>
+<?php
 echo "<table class=\"list\">\n";
 echo "<tr class=\"table-header\">\n";
 echo "<th class=\"\"><a href=\"contacto.php?page=".$page."&orden=apellido_pat\">Nombre</a></th>\n";

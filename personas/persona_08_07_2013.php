@@ -46,13 +46,7 @@ if(isset($_GET['id']))
         $id_municipio = $user['id_municipio'];
         $id_escuela = $user['id_escuela'];
         $id_medio=$user['id_medio'];
-		$id_estado1=$user['id_estado'];
-		///busca id estado
-		$queryest = "SELECT id_estado FROM municipios WHERE id_municipio='$id_municipio'";
-        $result = mysql_query($queryest);
-		$rowest = mysql_fetch_array($result);
-		$id_estado=$rowest['id_estado'];
-   
+
   }
   
   if(isset($_GET['estado']))
@@ -87,14 +81,11 @@ if(isset($_GET['id']))
       }else{
         $contestado=0;
       }
-	  
-	   if($_POST['municipio']=="0")
-	      {  $muni=$_POST['id_munis'];  } else {   $muni=$_POST['municipio'];} 
-   
    $idz_usuario=$_SESSION["id"];
    $query = "UPDATE persona SET nombre='".$_POST['nombre']."', apellido_pat='".$_POST['apellido_pat']."', apellido_mat='".$_POST['apellido_mat']."',
      sexo='".$_POST['sexo']."', tel_casa='".$_POST['telefono']."', tel_celular='".$_POST['celular']."', observaciones='".$_POST['observaciones']."', 
-     estatus='".$_POST['estatus']."', mail='".$_POST['email']."', id_medio='".$_POST['medio']."', contestado='".$contestado."', id_municipio='$muni', id_escuela = '".$_POST['escuela']."', id_usuario = '".$idz_usuario."', id_estado='".$_POST['estado']."'  WHERE id = '".$_POST['id']."'";
+     estatus='".$_POST['estatus']."', mail='".$_POST['email']."', id_medio='".$_POST['medio']."', contestado='".$contestado."', id_municipio='".$_POST['municipio']."', id_escuela = '".$idz_usuario."'
+     WHERE id = '".$_POST['id']."'";
     //echo $query;
     $result = mysql_query($query) or die(mysql_error());
     if(!$result)
@@ -121,9 +112,9 @@ if(isset($_GET['id']))
         $contestado=0;
       }
       $query = "INSERT INTO persona
-      (nombre, apellido_pat, apellido_mat,sexo,tel_casa,tel_celular,observaciones,estatus,mail,id_medio,id_municipio,id_escuela,id_usuario,id_estado)
+      (nombre, apellido_pat, apellido_mat,sexo,tel_casa,tel_celular,observaciones,estatus,mail,id_medio,id_municipio,id_escuela,id_usuario)
       VALUES
-      ('$_POST[nombre]', '$_POST[apellido_pat]','$_POST[apellido_mat]','$_POST[sexo]', '$_POST[telefono]', '$_POST[celular]', '$_POST[observaciones]', '$_POST[estatus]','$_POST[email]','$_POST[medio]','$_POST[municipio]','$_POST[escuela]','$_SESSION[id_usuario]','$_POST[estado]')";
+      ('$_POST[nombre]', '$_POST[apellido_pat]','$_POST[apellido_mat]','$_POST[sexo]', '$_POST[telefono]', '$_POST[celular]', '$_POST[observaciones]', '$_POST[estatus]','$_POST[email]','$_POST[medio]','$_POST[municipio]','$_POST[escuela]','$_SESSION[id_usuario]')";
     //echo $query; exit;
     $result = mysql_query($query) or die(mysql_error());
     if(!$result)
@@ -342,21 +333,20 @@ while( $rowz=mysql_fetch_array($resultz) )
         
         });
     </script>
-    
             <label>Estado</label>
-            <select class="wide" id="estado" name="estado" required>
+            <select class="wide" id="estado" required>
                 <option value="0"></option>
 <?php 
 $resultx=mysql_query("SELECT * FROM estados ;");
+    
     $i=0;
+    
 while( $rowx=mysql_fetch_array($resultx) )
     {
     $newidx=$rowx['id_estado'];
     $newnamex=$rowx['estado'];
     
         echo " <option value='".$newidx."' ";
-		if($newidx==$id_estado)
-            {echo "selected";}
         echo "> ". htmlspecialchars($newnamex) ." </option>";
         $i++;
 
@@ -366,33 +356,33 @@ while( $rowx=mysql_fetch_array($resultx) )
                         </select>
         </div>
         <div>
-            <label>Municipio</label> 
-            
-            :::<?php 
+            <label>Municipio</label>
+            <select name="municipio" class="wide" required>
+                <option value=""></option>
+<?php 
 $resultx=mysql_query("SELECT * FROM municipios ;");
+    
     $i=0;
+    
 while( $rowx=mysql_fetch_array($resultx) )
     {
     $newidx=$rowx['id_municipio'];
     $newnamex=$rowx['municipio'];
     
-       
-        if($newidx==$id_municipio)
-            {echo $newnamex; }
-        
+        echo " <option value='".$newidx."' ";
+        if($id_municipio==0)
+            {echo "selected";}
+        echo "> ". htmlspecialchars($newnamex) ." </option>";
         $i++;
-   }
+
+    }
+    
     ?>
- 
-                        
-            <select class="wide" name="municipio" id="municipio" required="required">
-            <option value="0">Cambia Estado para cambiar de municipio</option>
-          </select>
+                        </select>
         </div>
     
         <div class="clearfix">
             <input type="hidden" name="id" value="<?=$id?>" required>
-            <input type="hidden" name="id_munis" value="<?=$id_municipio?>" required>
 
             <div class="button large"><input type="submit" value="Guardar"></div>
         </div>
@@ -545,7 +535,7 @@ while( $rowz=mysql_fetch_array($resultz) )
         });
     </script>
             <label>Estado</label>
-            <select class="wide" id="estado" name="estado" required>
+            <select class="wide" id="estado" required>
                 <option value="0"></option>
 <?php 
 $resultx=mysql_query("SELECT * FROM estados ;");

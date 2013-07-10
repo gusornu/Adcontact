@@ -11,7 +11,7 @@
                 <a href="#"><span>Seguimientos</span></a>
             </li>
             <li class="">
-                <a href="<?php echo $nivel_dir; ?>reportes/esc_per.php"><span>Reportes</span></a>
+                <a href="<?php echo $nivel_dir; ?>reportes/seg_med.php"><span>Reportes</span></a>
             </li>
 
             <li class=" messages">
