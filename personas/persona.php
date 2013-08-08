@@ -52,6 +52,8 @@ if(isset($_GET['id']))
         $result = mysql_query($queryest);
 		$rowest = mysql_fetch_array($result);
 		$id_estado=$rowest['id_estado'];
+		$fecha_seguimiento=$user['fecha_seguimiento'];
+		$direccion=$user['direccion'];
    
   }
   
@@ -94,7 +96,7 @@ if(isset($_GET['id']))
    $idz_usuario=$_SESSION["id"];
    $query = "UPDATE persona SET nombre='".$_POST['nombre']."', apellido_pat='".$_POST['apellido_pat']."', apellido_mat='".$_POST['apellido_mat']."',
      sexo='".$_POST['sexo']."', tel_casa='".$_POST['telefono']."', tel_celular='".$_POST['celular']."', observaciones='".$_POST['observaciones']."', 
-     estatus='".$_POST['estatus']."', mail='".$_POST['email']."', id_medio='".$_POST['medio']."', contestado='".$contestado."', id_municipio='$muni', id_escuela = '".$_POST['escuela']."', id_usuario = '".$idz_usuario."', id_estado='".$_POST['estado']."'  WHERE id = '".$_POST['id']."'";
+     estatus='".$_POST['estatus']."', mail='".$_POST['email']."', id_medio='".$_POST['medio']."', contestado='".$contestado."', id_municipio='$muni', id_escuela = '".$_POST['escuela']."', id_usuario = '".$idz_usuario."', id_estado='".$_POST['estado']."', fecha_seguimiento='".$_POST['fecha_seguimiento']."'  WHERE id = '".$_POST['id']."'";
     //echo $query;
     $result = mysql_query($query) or die(mysql_error());
     if(!$result)
@@ -121,9 +123,9 @@ if(isset($_GET['id']))
         $contestado=0;
       }
       $query = "INSERT INTO persona
-      (nombre, apellido_pat, apellido_mat,sexo,tel_casa,tel_celular,observaciones,estatus,mail,id_medio,id_municipio,id_escuela,id_usuario,id_estado)
+      (nombre, apellido_pat, apellido_mat,sexo,tel_casa,tel_celular,observaciones,estatus,mail,id_medio,id_municipio,id_escuela,id_usuario,id_estado,fecha_seguimiento)
       VALUES
-      ('$_POST[nombre]', '$_POST[apellido_pat]','$_POST[apellido_mat]','$_POST[sexo]', '$_POST[telefono]', '$_POST[celular]', '$_POST[observaciones]', '$_POST[estatus]','$_POST[email]','$_POST[medio]','$_POST[municipio]','$_POST[escuela]','$_SESSION[id_usuario]','$_POST[estado]')";
+      ('$_POST[nombre]', '$_POST[apellido_pat]','$_POST[apellido_mat]','$_POST[sexo]', '$_POST[telefono]', '$_POST[celular]', '$_POST[observaciones]', '$_POST[estatus]','$_POST[email]','$_POST[medio]','$_POST[municipio]','$_POST[escuela]','$_SESSION[id_usuario]','$_POST[estado]'),'$_POST[fecha_seguimiento]')";
     //echo $query; exit;
     $result = mysql_query($query) or die(mysql_error());
     if(!$result)
@@ -263,24 +265,30 @@ if(!mysql_num_rows($result) >= 1)
         </div>
 
        <div>
-            <label>Estatus</label>
-            <select name="estatus" class="wide" required>
-                <option value=""></option>
+         <label>Estatus</label>
+         <select name="estatus" class="wide" required="required">
+           <option value="0"></option>
+              <?php 
+$resulty=mysql_query("SELECT * FROM estatus ;");
+    
+    $i=0;
+    
+while( $rowy=mysql_fetch_array($resulty) )
+    {
 
-                            <option value="1" <?php
-                    if($estatus=1){
-                        echo"selected";
-                    }
-                ?>>Inscrito</option>
-                ;
-                            <option value="2" <?php
-                    if($estatus=2){
-                        echo"selected";
-                    }
-                ?>>Estudiando</option>
-                ;
-                        </select>
-        </div>
+    $newidy=$rowy['id_estatus'];
+    $newnamey=$rowy['nombre'];
+    
+        echo " <option value='".$newidy."' ";
+        if ($estatus==$newidy){echo "selected";}
+        echo "> ". htmlspecialchars($newnamey) ." </option>";
+        $i++;
+
+    }
+    
+    ?>
+         </select>
+       </div>
         <div>
             <label>Medio</label>
             <select name="medio" class="wide" required>
@@ -389,6 +397,10 @@ while( $rowx=mysql_fetch_array($resultx) )
             <option value="0">Cambia Estado para cambiar de municipio</option>
           </select>
         </div>
+        <div>
+            <label>Siguiente Seguimiento</label> 
+            <input type="date" name="fecha_seguimiento" value="<?=$fecha_seguimiento?>">
+        </div>
     
         <div class="clearfix">
             <input type="hidden" name="id" value="<?=$id?>" required>
@@ -476,15 +488,29 @@ while( $rowx=mysql_fetch_array($resultx) )
 
        <div>
             <label>Estatus</label>
-            <select name="estatus" class="wide" required>
-                <option ></option>
+            <select name="estatus" class="wide" required="required">
+              <option value="0"></option>
+              <?php 
+$resulty=mysql_query("SELECT * FROM estatus ;");
+    
+    $i=0;
+    
+while( $rowy=mysql_fetch_array($resulty) )
+    {
 
-                            <option value="1">Inscrito</option>
-                ;
-                            <option value="2">Estudiando</option>
-                ;
-                        </select>
-        </div>
+    $newidy=$rowy['id_estatus'];
+    $newnamey=$rowy['nombre'];
+    
+        echo " <option value='".$newidy."' ";
+        if ($estatus==$newidy){echo "selected";}
+        echo "> ". htmlspecialchars($newnamey) ." </option>";
+        $i++;
+
+    }
+    
+    ?>
+            </select>
+       </div>
 
         <div>
             <label>Medio</label>
@@ -571,6 +597,10 @@ while( $rowx=mysql_fetch_array($resultx) )
             <select class="wide" name="municipio" id="municipio" required>
                 <option value="0">Seleccione un estado</option>
               </select>
+        </div>
+        <div>
+            <label>Siguiente Seguimiento</label>
+            <input type="date" name="fecha_seguimiento">
         </div>
     
         <div class="clearfix">

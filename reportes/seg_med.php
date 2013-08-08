@@ -66,26 +66,31 @@ include($nivel_dir.'template/top.php');
         <td width="38">        	
      </tr>
       <tr>
-        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=rsm&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>SEGUIMIENTOS  P/C MEDIO EN UN PERIODO   </span></a>
+        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=rsm&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>SEGUIMIENTOS  P/C MEDIO</span></a>
         
        </td> 
            
      </tr>
            <tr>
-        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=mp&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>CONTACTOS P/C MEDIO EN UN PERIODO   </span></a>
+        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=mp&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>CONTACTOS P/C MEDIO</span></a>
         
        </td> 
            
      </tr>
            <tr>
-        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=ep&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>CONTACTOS POR ESCUELA EN UN PERIODO</span></a>
+        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=ep&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>CONTACTOS POR ESCUELA </span></a>
         
        </td> 
            
      </tr>
       <tr>
-        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=est&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>CONTACTOS POR ESTADO EN UN PERIODO</span></a>
+        <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=est&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span>CONTACTOS POR ESTADO </span></a>
         
-       </td> </form>
+       </td>
+       
+        <tr>
+           <td colspan="5" class="action"><a class="modalbox small-button modal" onclick="this.href='rep_seg_med.php?rep=ins&fecha1='+document.getElementById('fecha_ini').value+'&fecha2='+document.getElementById('fecha_fin').value;return true;"> <span> INSCRITOS POR ESCUELA</span></a>
+        </td>
+        </form>
    </table>
  

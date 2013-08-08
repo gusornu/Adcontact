@@ -116,16 +116,24 @@ if($counter<=7 ){ $and="and";} else{ $and="";}
 	$est="$and id_estado ='".$_POST["estado"]."'";
 	}else {	$est="";	}
 	
+	if($_POST["estatus"]!=""){
+	$estat="$and estatus ='".$_POST["estatus"]."'";
+	}else {	$estat="";	}
+	
 	if($_POST["escuela"]!=""){
 	$esc="$and id_escuela ='".$_POST["escuela"]."'";
 	}else {	$esc="";	}
 }
 
-
-$query ="SELECT * FROM persona where id>0 $buscar $sexob $fech $mail1 $tel $est $esc ORDER BY $orden Limit $start, $porpagina ;";
 //mandar query con la seleccion
-//echo "SELECT * FROM persona ORDER BY $orden;";
-//$query = "SELECT * FROM persona ORDER BY $orden Limit $start, $porpagina ;";
+if (isset($_GET["hoy"])){
+$query ="select distinct * from persona, seguimiento where persona.fecha_seguimiento =CURDATE() or seguimiento.fecha_seguimiento=CURDATE() group by $orden ORDER BY $orden Limit $start, $porpagina ;";
+} else if (isset($_GET["segui"])){
+$query ="select * from persona, estatus where persona.estatus=estatus.id_estatus and estatus.nombre='abierto'  ORDER BY $orden Limit $start, $porpagina ;";
+}else {
+$query ="SELECT * FROM persona where id>0 $buscar $sexob $fech $mail1 $tel $est $estat $esc ORDER BY $orden Limit $start, $porpagina ;";
+}
+
 
 $result = mysql_query($query) or die(mysql_error());
 
@@ -195,11 +203,30 @@ echo $alerta;
     ?>
     </select>
         </div></td>
-	    <td><div><label>Estatus</label><select name='estatus' style="width: 210px;">
-        							<option value=''>Elige una Opción</option>
-									<option value='1'>Abierto</option>
-									<option value='2'>Cerrado</option>
-	    </select></div></td>
+	    <td><div><label>Estatus</label>
+	      <select name="estatus" class="wide"  style="width: 210px;">
+	         <option value=''>Seleccione</option>
+	        <?php 
+$resulty=mysql_query("SELECT * FROM estatus ;");
+    
+    $i=0;
+    
+while( $rowy=mysql_fetch_array($resulty) )
+    {
+
+    $newidy=$rowy['id_estatus'];
+    $newnamey=$rowy['nombre'];
+    
+        echo " <option value='".$newidy."' ";
+        if ($estatus==$newidy){echo "selected";}
+        echo "> ". htmlspecialchars($newnamey) ." </option>";
+        $i++;
+
+    }
+    
+    ?>
+          </select>
+	    </div></td>
 	    <td><div><label>Escuela</label>
 	      <select name="escuela" id="escuela" style="width: 210px;" >
 	        <option value=''>Seleccione</option>
@@ -254,7 +281,7 @@ $mail=htmlentities($row['mail']);
 $id_municipio=htmlentities($row['id_municipio']); 
 $id_escuela=htmlentities($row['id_escuela']); 
 				echo "<tr>";
-				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $apellido_pat ." ". $nombre." ". $apellido_mat."</a></td>";
+				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $nombre ." ". $apellido_pat." ". $apellido_mat."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $tel_casa."</a></td>";
 				$quere = "SELECT * FROM estatus WHERE id_estatus=$estatus";
 				$resulte = mysql_query($quere) or die(mysql_error());
@@ -282,7 +309,7 @@ $id_escuela=htmlentities($row['id_escuela']);
 				$fechaz=htmlentities($row['fecha_seguimiento']);
 				$descz=htmlentities($row['observacion']);
 				$ids=$row['id_seguimiento'];			
-				echo "<li><a  class=\"modalbox modal\" href=\"personas/seg.php?editar&id=".$ids."\">Seguimiento pendiente fecha: ".$fechaz." descripcion: ". $descz." </a></li>";
+				echo "<li><a  class=\"modalbox modal\" href=\"personas/seg.php?editar&estat=".$estatus."&id=".$ids."\">Seguimiento pendiente fecha: ".$fechaz." descripcion: ". $descz." </a></li>";
 				}
 				echo "</ul></td>";
 				//echo "<td class=\"action\"><a  class=\"modalbox small-button modal\" href=\"personas/seg.php?editar&id=".$id."\"><span>Editar</span></a></td>";

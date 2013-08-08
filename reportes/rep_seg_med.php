@@ -22,11 +22,14 @@ if ($_GET["rep"]=="rsm"){
  $qdp=mysql_query("SELECT medio.nombre as medio, count(*) as medios FROM persona, medio where persona.`id_medio`=medio.id_medio and persona.fecha BETWEEN '$fecha1' AND '$fecha2' group by medio;");
  $nom_rep="CONTACTOS P/C MEDIO";
 } else if ($_GET["rep"]=="ep"){
- $qdp=mysql_query("SELECT escuela.nombre as escuela, count(*) as personas FROM persona, escuela where persona.`id_escuela`=escuela.id_escuela and persona.fecha BETWEEN '$fecha1' AND '$fecha2' group by escuela;") ;
+echo  $qdp=mysql_query("SELECT escuela.nombre as escuela, count(*) as personas FROM persona, escuela where persona.`id_escuela`=escuela.id_escuela and persona.fecha BETWEEN '$fecha1' AND '$fecha2' group by escuela;") ;
  $nom_rep="CONTACTOS POR ESCUELA";
 } else if ($_GET["rep"]=="est"){
  $qdp=mysql_query("SELECT estados.`estado`, count(*) as personas FROM persona, estados where persona.`id_estado`=estados.`id_estado` and persona.fecha BETWEEN '$fecha1' AND '$fecha2' group by estado;") ;
  $nom_rep="CONTACTOS POR ESTADO";
+}else if ($_GET["rep"]=="ins"){
+ $qdp=mysql_query("SELECT escuela.nombre as escuela, count(*) as personas FROM persona, escuela where persona.`id_escuela`=escuela.id_escuela and persona.fecha BETWEEN '$fecha1' AND '$fecha2' and estatus=35 group by escuela;") ;
+ $nom_rep="INSCRITOS POR ESCUELA";
 }
 
 
@@ -63,6 +66,8 @@ if ($_GET["rep"]=="rsm")
   echo "{ country:\"".$rdp['escuela']."\", litres:".$rdp['personas']."}";
 }else if ($_GET["rep"]=="est"){
   echo "{ country:\"".$rdp['estado']."\", litres:".$rdp['personas']."}";
+}else if ($_GET["rep"]=="ins"){
+  echo "{ country:\"".$rdp['escuela']."\", litres:".$rdp['personas']."}";
 }
    
            // $i++;

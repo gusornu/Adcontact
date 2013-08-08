@@ -105,7 +105,7 @@ while($row = mysql_fetch_array($result)) {
 $id=$row['id_estatus'];
 $nombre=htmlentities($row['nombre']);
 $abrev=htmlentities($row['abrev']);
-$estatus=htmlentities($row['estatus']);
+$estatus=htmlentities($row['status']);
 				echo "<tr>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $id ."</a></td>";
 				echo "	<td class=\"\"><a class=\"cell-link\" href=\"#\">". $nombre."</a></td>";

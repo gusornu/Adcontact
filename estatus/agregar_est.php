@@ -18,7 +18,7 @@ if (isset($_GET["id_est"]))
 		$row1 = mysql_fetch_array($result1);
 		$id_med=$row1['id_estatus'];
 		$nombre=$row1['nombre'];
-		$estatus=$row1['estatus'];
+		$estatus=$row1['status'];
 		$abrev=$row1['abrev'];
 	
 	} else {

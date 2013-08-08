@@ -14,7 +14,7 @@ if ($_POST["id_est"])
 *$query: Conecta con la base de datos
 */
 			
-		$query = "UPDATE `promocion`.`estatus` SET `nombre`='".$_POST["nombre"]."', `abrev`='".$_POST["abrev"]."', `estatus`='".$_POST["estatus"]."' WHERE `estatus`.`id_estatus`='".$_POST["id_est"]."' ";
+		$query = "UPDATE `promocion`.`estatus` SET `nombre`='".$_POST["nombre"]."', `abrev`='".$_POST["abrev"]."', `status`='".$_POST["estatus"]."' WHERE `estatus`.`id_estatus`='".$_POST["id_est"]."' ";
 		$result = mysql_query($query) or die(mysql_error());
 		$row1 = mysql_fetch_array($result);
 		$id_esc=$row['id_estatus'];

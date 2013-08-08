@@ -17,28 +17,36 @@ if(isset($_GET['insert']))
         $ddate=$_POST["idpersona"]; 
       $fecha_seguimiento=date('Y-m-d', strtotime(str_replace('-', '/', $_POST["siguiente"]))); 
     $query = "INSERT INTO seguimiento
-      (fecha_seguimiento, observacion,prioridad,id_persona,id_usuario,id_medio,estatus)
+      (fecha_seguimiento, observacion,prioridad,id_persona,id_usuario,id_medio)
       VALUES
-      ('$fecha_seguimiento', '$_POST[observacion]','$_POST[prioridad]','$_POST[idpersona]', '$_POST[idusuario]', '$_POST[medio]', '$_POST[estatus]')";
+      ('$fecha_seguimiento', '$_POST[observacion]','$_POST[prioridad]','$_POST[idpersona]', '$_POST[idusuario]', '$_POST[medio]')";
     //echo $query; exit;
    $result = mysql_query($query) or die(mysql_error());
     if(!$result)
     {
-     echo "occurrio un problema";
+     echo "ocurrio un problema al actualizar";
      
     }
     else
     {
-     header("Location: ../includes/cerrar.php");
-
+		 $queryest = "UPDATE persona SET estatus='".$_POST['estatus']."' WHERE id = '".$_POST['idpersona']."'";
+		 $result = mysql_query($queryest) or die(mysql_error());
+			 if(!$result)
+   						 {
+    					 echo "ocurrio un al actualizar el estatus ";
+     
+   						 }
+   						 else
+   						 {
+		
+   						  header("Location: ../includes/cerrar.php");
+						 }
     }
    }
    if(isset($_GET['update']))
    {
       $fecha_seguimiento=date('Y-m-d', strtotime(str_replace('-', '/', $_POST["fecha_seguimiento"]))); 
-    $query = "UPDATE seguimiento SET fecha='".$_POST['fecha']."', fecha_seguimiento='".$_POST['fecha_seguimiento']."', observacion='".$_POST['observacion']."',
-     prioridad='".$_POST['prioridad']."', id_persona='".$_POST['id_persona']."', id_usuario='".$_POST['id_usuario']."', id_medio='".$_POST['id_medio']."', 
-     estatus='".$_POST['estatus']."' WHERE id_seguimiento = '".$_POST['id']."'";
+    $query = "UPDATE seguimiento, persona SET seguimiento.fecha='".$_POST['fecha']."', seguimiento.fecha_seguimiento='".$_POST['fecha_seguimiento']."', seguimiento.observacion='".$_POST['observacion']."', seguimiento.prioridad='".$_POST['prioridad']."', seguimiento.id_persona='".$_POST['id_persona']."', seguimiento.id_usuario='".$_POST['id_usuario']."', seguimiento.id_medio='".$_POST['id_medio']."', persona.estatus='".$_POST['estatus']."' WHERE persona.id=seguimiento.id_persona and id_seguimiento = '".$_POST['id']."'";
     //echo $query; exit;
     $result = mysql_query($query) or die(mysql_error());
     if(!$result)
@@ -139,15 +147,29 @@ while( $rowy=mysql_fetch_array($resulty) )
         
        <div>
             <label>Estatus</label>
-            <select name="estatus" class="wide">
-                <option value=""></option>
+            <select name="estatus" class="wide" required="required">
+              <option value="0"></option>
+              <?php 
+$resulty=mysql_query("SELECT * FROM estatus ;");
+    
+    $i=0;
+    
+while( $rowy=mysql_fetch_array($resulty) )
+    {
 
-                            <option value="1">Inscrito</option>
-                ;
-                            <option value="2">Estudiando</option>
-                ;
-                        </select>
-        </div>
+    $newidy=$rowy['id_estatus'];
+    $newnamey=$rowy['nombre'];
+    
+        echo " <option value='".$newidy."' ";
+        if ($estatus==$newidy){echo "selected";}
+        echo "> ". htmlspecialchars($newnamey) ." </option>";
+        $i++;
+
+    }
+    
+    ?>
+            </select>
+       </div>
     
         <div class="clearfix">
             <div class="button large"><input type="submit" value="Crear"></div>
@@ -161,6 +183,7 @@ while( $rowy=mysql_fetch_array($resulty) )
 if(isset($_GET['editar'])){
 
     $id=$_GET['id'];
+	 $estat=$_GET['estat'];
       $query = "SELECT * FROM `seguimiento` WHERE `id_seguimiento`=$id";
 
     //echo $query; exit;
@@ -183,6 +206,7 @@ if(isset($_GET['editar'])){
         $id_persona = $user['id_persona'];
         $id_usuario = $user['id_usuario'];
         $id_medio = $user['id_medio'];
+		$estatus = $user['estatus'];
         
 
   
@@ -241,28 +265,40 @@ while( $rowy=mysql_fetch_array($resulty) )
         <div>
             <label>Prioridad</label>
             <select name="prioridad" class="wide">
-                <option value=""></option>
+                <option value="<?=$prioridad?>"><?=$prioridad?></option>
 
-                            <option value="1">Poca</option>
-                ;
-                            <option value="2">Media</option>
-                            <option value="2">Alta</option>
-                ;
+                            <option value="Poca">Poca</option>
+                            <option value="Media">Media</option>
+                            <option value="Alta">Alta</option>
                         </select>
         </div>
        
         
        <div>
             <label>Estatus</label>
-            <select name="estatus" class="wide">
-                <option value=""></option>
+            <select name="estatus" class="wide" required="required">
+              <option value="0"></option>
+              <?php 
+$resulty=mysql_query("SELECT * FROM estatus ;");
+    
+    $i=0;
+    
+while( $rowy=mysql_fetch_array($resulty) )
+    {
 
-                            <option value="1">Inscrito</option>
-                ;
-                            <option value="2">Estudiando</option>
-                ;
-                        </select>
-        </div>
+    $newidy=$rowy['id_estatus'];
+    $newnamey=$rowy['nombre'];
+    
+        echo " <option value='".$newidy."' ";
+        if ($estat==$newidy){echo "selected";}
+        echo "> ". htmlspecialchars($newnamey) ." </option>";
+        $i++;
+
+    }
+    
+    ?>
+            </select>
+       </div>
     
         <div class="clearfix">
             <div class="button large"><input type="submit" value="Editar"></div>
